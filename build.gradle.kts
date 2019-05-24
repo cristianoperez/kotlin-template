@@ -34,14 +34,15 @@ allprojects {
         plugin("kotlin")
     }
 
-    val compileKotlin by tasks.getting(KotlinCompile::class) {
-        kotlinOptions.jvmTarget = "1.8"
-        doLast { println("Finished compiling Kotlin source code") }
+    tasks.withType<Test> {
+        useJUnitPlatform()
     }
 
-    val compileTestKotlin by tasks.getting(KotlinCompile::class) {
-        kotlinOptions.jvmTarget = "1.8"
-        doLast { println("Finished compiling Kotlin source code for testing") }
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "1.8"
+        }
     }
 }
 
