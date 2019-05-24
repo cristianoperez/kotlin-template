@@ -10,7 +10,6 @@ buildscript {
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-        implementation("javax.activation:activation:1.1.1")
     }
 }
 
@@ -24,6 +23,7 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("javax.activation:activation:1.1.1")
 }
 
 allprojects {
