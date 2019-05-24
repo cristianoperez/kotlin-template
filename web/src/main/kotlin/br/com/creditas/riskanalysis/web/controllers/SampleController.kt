@@ -5,15 +5,15 @@ import br.com.creditas.riskanalysis.web.repositories.SampleRepository
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/sample")
 class SampleController(private val sampleRepository: SampleRepository) {
 
-    @PostMapping("/sample")
+    @PostMapping
     fun add(@RequestBody se: SampleEntity): SampleEntity {
         return sampleRepository.save(se)
     }
 
-    @GetMapping("/sample")
+    @GetMapping
     fun list(): List<SampleEntity> {
         return sampleRepository.findAll().toList()
     }
