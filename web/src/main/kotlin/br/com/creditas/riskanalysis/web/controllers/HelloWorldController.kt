@@ -12,5 +12,5 @@ class HelloWorldController {
 
     @GetMapping("/helloworld")
     @ResponseStatus(HttpStatus.OK)
-    fun helloWorld() {}
+    fun helloWorld() = "hello :)"
 }
