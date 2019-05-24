@@ -17,7 +17,7 @@ internal class WebConfiguration : ApplicationContextInitializer<GenericApplicati
         bean {
             Docket(DocumentationType.SWAGGER_2)
             .select()
-            .paths(Predicates.not(PathSelectors.regex("/health")))
+            .paths(Predicates.not(PathSelectors.regex("/error|/info|/health.*")))
             .build()
         }
     }
