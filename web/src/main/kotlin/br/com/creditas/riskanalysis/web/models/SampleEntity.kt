@@ -1,4 +1,4 @@
-package br.com.creditas.riskanalysis.web.sample
+package br.com.creditas.riskanalysis.web.models
 
 import java.util.*
 import javax.persistence.Entity
