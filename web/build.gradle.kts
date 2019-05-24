@@ -21,6 +21,5 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation("com.logentries:logentries-appender:1.1.38")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
