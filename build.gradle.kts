@@ -23,6 +23,7 @@ version = "1.0-SNAPSHOT"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("javax.activation:activation:1.1.1")
 }
 
 allprojects {
