@@ -5,7 +5,7 @@ import br.com.creditas.riskanalysis.web.repositories.SampleRepository
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/v1/sample")
+@RequestMapping("/sample")
 class SampleController(private val sampleRepository: SampleRepository) {
 
     @PostMapping
