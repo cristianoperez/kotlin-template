@@ -8,6 +8,6 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "sample_entity")
-class SampleEntity(@Id @GeneratedValue val id: UUID = UUID.fromString("00000000-0000-0000-0000-000000000000"),
+data class SampleEntity(@Id @GeneratedValue val id: UUID = UUID.fromString("00000000-0000-0000-0000-000000000000"),
                    val title: String = "",
                    val description: String = "")
