@@ -29,5 +29,5 @@ dependencies {
     testImplementation("org.mockito:mockito-core:2.19.0")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0")
     testImplementation("org.amshove.kluent:kluent:1.40")
-	testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 }
