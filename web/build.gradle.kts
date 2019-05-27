@@ -27,5 +27,8 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.25")
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation("com.logentries:logentries-appender:1.1.38")
-	testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation("org.mockito:mockito-core:2.19.0")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0")
+    testImplementation("org.amshove.kluent:kluent:1.40")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 }
