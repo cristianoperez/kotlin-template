@@ -11,22 +11,18 @@ import javax.servlet.http.HttpServletRequest
 
 @Component
 class RequestIdFilter : GenericFilterBean() {
-    override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
-        if (request != null) {
-            val http = request as HttpServletRequest
+    override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
+        if(request is HttpServletRequest) {
+            val http = request
             MDC.put("request-id", getRequestId(http))
         }
 
-        chain!!.doFilter(request, response)
+        chain.doFilter(request, response)
     }
 
     private fun getRequestId(request: HttpServletRequest): String {
         val requestId = request.getHeader("X-Request-ID")
 
-        return if (requestId != null) {
-            "$requestId,${UUID.randomUUID()}"
-        } else {
-            UUID.randomUUID().toString()
-        }
+        return if (requestId != null) "$requestId,${UUID.randomUUID()}" else UUID.randomUUID().toString()
     }
 }
