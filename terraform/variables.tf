@@ -28,12 +28,6 @@ variable "application" {
   description = "Tag Application"
 }
 
-# VPC
-
-variable "vpc_name" {
-  description = "The name of the VPC to place the application infrastructure"
-}
-
 # SECURITY GROUP
 
 variable "sg_name_ssh_office" {
