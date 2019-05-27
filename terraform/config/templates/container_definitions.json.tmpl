@@ -1,0 +1,43 @@
+[
+  {
+    "name": "${name}",
+    "image": "nginx",
+    "cpu": 0,
+    "memory": 400,
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "logentries",
+      "secretOptions": [
+        {
+          "name": "logentries-token",
+          "valueFrom": "${application_ssm_arn}/LOGENTRIES_TOKEN"
+        }
+      ]
+    },
+    "environment": [
+      {
+        "name": "ENV",
+        "value": "${environment}"
+      }
+    ],
+    "secrets": [
+      {
+        "name": "USER_DATA_SIGNATURE_PUBLIC_KEY",
+        "valueFrom": "${gateway_ssm_arn}/USER_DATA_SIGNATURE_PUBLIC_KEY"
+      },
+      {
+        "name": "NEWRELIC_TOKEN",
+        "valueFrom": "${application_ssm_arn}/NEWRELIC_TOKEN"
+      }
+    ],
+    "command": [
+      "web"
+    ],
+    "portMappings": [
+      {
+        "containerPort": ${port},
+        "hostPort": 0
+      }
+    ]
+  }
+]
