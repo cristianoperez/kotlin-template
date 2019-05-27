@@ -59,10 +59,12 @@ class SampleControllerTests {
             .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id.toString()))
             .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Title"))
             .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Description"))
+
+        verify(sampleRepository).save(entity)
     }
 
     @Test
-    fun `Must return a decision with the rules results, without cars_empirica rule`() {
+    fun `Fluent assertions example with "Kluent" lib`() {
         val computedList = listOf(1, 2, 3)
         val desiredList = listOf(1, 2, 3)
 
