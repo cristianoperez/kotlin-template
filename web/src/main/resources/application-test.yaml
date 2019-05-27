@@ -1,0 +1,24 @@
+logging:
+  level:
+    org:
+      zalando:
+        logbook: TRACE
+context:
+  initializer:
+    classes: br.com.creditas.riskanalysis.web.configuration.WebConfiguration
+management:
+  endpoints:
+    web:
+      base-path:
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/risk_analysis?user=postgres
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: false
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
