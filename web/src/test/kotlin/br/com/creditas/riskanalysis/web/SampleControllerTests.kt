@@ -45,7 +45,7 @@ class SampleControllerTests {
     private lateinit var sampleRepository: SampleRepository
 
     @Test
-    fun `Must receive the Sample Entity by parameter and pass it to the repository`() {
+    fun `When receiving a Sample entity by parameter, should pass it to the repository`() {
         val id = UUID.randomUUID()
         val entity = SampleEntity(id, "Title", "Description")
         val params = mapper.writeValueAsString(entity)
