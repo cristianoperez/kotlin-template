@@ -1,18 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-buildscript {
-    val kotlinVersion = "1.3.31"
-
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-    }
-}
-
 repositories {
     jcenter()
 }
@@ -22,6 +9,7 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.0.0.RC8"
     id("org.springframework.boot") version "2.1.5.RELEASE"
 	id("io.spring.dependency-management") version "1.0.7.RELEASE"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.31"
 	kotlin("plugin.spring") version "1.2.71"
 }
 
