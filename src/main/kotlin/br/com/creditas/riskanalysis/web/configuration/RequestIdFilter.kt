@@ -1,4 +1,4 @@
-package rag.web.configuration
+package br.com.creditas.riskanalysis.web.configuration
 
 import org.slf4j.MDC
 import org.springframework.stereotype.Component
@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletRequest
 class RequestIdFilter : GenericFilterBean() {
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
         if(request is HttpServletRequest) {
-            val http = request
-            MDC.put("request-id", getRequestId(http))
+            MDC.put("request-id", getRequestId(request))
         }
 
         chain.doFilter(request, response)
