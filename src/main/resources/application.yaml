@@ -14,8 +14,6 @@ spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/risk_analysis?user=postgres
     driver-class-name: org.postgresql.Driver
-  flyway:
-    enabled: false
   jpa:
     properties:
       hibernate:
