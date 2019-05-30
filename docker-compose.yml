@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  risk-analysis:
+    build: .
+    image: creditas/risk-analysis
+    hostname: risk-analysis
+    networks:
+      - bankfacil
+    ports:
+      - "80:9292"
+
+networks:
+  bankfacil:
+    external: true

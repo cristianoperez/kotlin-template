@@ -19,17 +19,29 @@ Alguns *targets* interessantes do Gradle (sistema de build):
 Supondo que você tenha instalado:
 
 * [Docker][]
+* [Docker Dev][]
 * [Docker Compose][]
 
 [Docker]: https://docs.docker.com/install/ "About Docker CE"
+[Docker Dev]: https://github.com/Creditas/docker-dev "A CLI for simplify the creation of development environment."
 [Docker Compose]: https://docs.docker.com/compose/install/#install-compose "Install Docker Compose"
 
-Em um terminal qualquer você pode executar, de dentro da raiz do projeto:
+Primeiro, suba o postgres via docker-dev. Para isso, na pasta do docker-dev execute:
+
+    $ docker-compose up -d postgres
+
+Após a inicialização do banco, é necessário criar a base de dados da aplicação:
+
+    $ docker exec -it postgres psql -U postgres -c "create database risk_analysis"
+
+Então, você pode executar, de dentro da raiz do projeto:
 
     $ docker-compose build
     $ docker-compose up -d
 
-O serviço estará disponível em [http://localhost:8080](http://localhost:8080).
+Para verificar se o build aconteceu com sucesso, basta chamar o health check:
+
+[http://localhost:80/health](http://localhost:80/health)
 
 ### Executando testes e lint
 
