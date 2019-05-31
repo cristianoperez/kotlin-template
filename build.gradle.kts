@@ -42,6 +42,8 @@ dependencies {
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0")
     testImplementation("org.amshove.kluent:kluent:1.40")
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation("org.testcontainers:testcontainers:1.11.3")
+    testImplementation("org.testcontainers:postgresql:1.11.3")
 }
 
 tasks.withType<Test> {
