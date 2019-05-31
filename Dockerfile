@@ -18,7 +18,7 @@ RUN gradle dependencies
 COPY . $APP_DIR
 
 # Build project
-RUN gradle build -x test
+RUN gradle build
 RUN cp $APP_DIR/build/libs/risk-analysis-1.0-SNAPSHOT.jar $APP_DIR/risk-analysis-1.0-SNAPSHOT.jar
 
 # -----------------------------------------------------------------------------

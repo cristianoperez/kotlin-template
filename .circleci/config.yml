@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Run build
           command: |
-            gradle build -x test
+            gradle build
 
       - run:
           name: Run lint
