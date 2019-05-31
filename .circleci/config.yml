@@ -1,0 +1,30 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:10.0.2-13-jdk-node-browsers
+
+    parallelism: 2
+    working_directory: ~/risk-analysis
+
+    environment:
+      TZ: "/usr/share/zoneinfo/America/Sao_Paulo"
+      ENVIRONMENT: "test"
+
+    steps:
+      - checkout
+      - run:
+          name: Add machine dependencies
+          command: |
+            gradle dependencies
+
+      - run:
+          name: Run build
+          command: |
+            gradle build -x test
+
+      - run:
+          name: Run lint
+          command: |
+            gradle detektCheck
