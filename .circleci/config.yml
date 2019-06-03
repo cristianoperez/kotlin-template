@@ -22,7 +22,7 @@ jobs:
       - run:
           name: Run build
           command: |
-            gradle build
+            gradle build --info
 
       - run:
           name: Run lint
