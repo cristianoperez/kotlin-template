@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:10.0.2-13-jdk-node-browsers
+      - image: postgres:11.2
 
     parallelism: 2
     working_directory: ~/risk-analysis
@@ -17,6 +18,9 @@ jobs:
       - run:
           name: Add machine dependencies
           command: |
+            sudo apt-get update
+            sudo apt-get install postgresql-client-9.6 -qy
+            echo "create database risk_analysis_test;" | psql postgres://postgres@localhost:5432/
             gradle dependencies
 
       - run:
