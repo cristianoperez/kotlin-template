@@ -1,11 +1,12 @@
 version: 2
 
 jobs:
-  build:
+  test_app:
     docker:
       - image: circleci/openjdk:11-jdk-stretch-node-browsers
       - image: postgres:11.2
 
+    parallelism: 2
     working_directory: ~/risk-analysis
 
     environment:
@@ -23,11 +24,56 @@ jobs:
             gradle dependencies
 
       - run:
-          name: Run build
+          name: Run tests
           command: |
-            gradle build --info
+            gradle test --info
 
       - run:
           name: Run lint
           command: |
             gradle detektCheck
+
+build_push_deploy_stg:
+  docker:
+    - image: 794670448117.dkr.ecr.us-east-1.amazonaws.com/ecs-deploy:latest
+      environment:
+        AWS_DEFAULT_REGION: 'us-east-1'
+        REPOSITORY: '794670448117.dkr.ecr.us-east-1.amazonaws.com/risk-analysis'
+        CLUSTER: risk-analysis
+        SERVICE: risk-analysis
+        TASK: risk-analysis
+  steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: Login on ECR
+        command: |
+          aws ecr get-login --no-include-email | sh
+          echo "export IMAGE_NAME=\"${REPOSITORY}:$(git rev-parse --short $CIRCLE_SHA1)\"" | tee "${BASH_ENV}"
+    - run:
+        name: build image
+        command: |
+          docker build -t $IMAGE_NAME .
+    - run:
+        name: push to ECR
+        command: |
+          docker push $IMAGE_NAME
+          docker tag $IMAGE_NAME $REPOSITORY:latest
+          docker push  $REPOSITORY:latest
+    - run:
+        name: deploy
+        command: |
+          ecs deploy $CLUSTER $SERVICE -i $TASK $IMAGE_NAME --timeout 500
+
+workflows:
+  version: 2
+  run_pipeline:
+    jobs:
+      - test_app
+      - build_push_deploy_stg:
+          requires:
+            - test_app
+          filters:
+            branches:
+              only:
+                - staging
