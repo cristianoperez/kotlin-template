@@ -5,7 +5,7 @@ logging:
         logbook: TRACE
 context:
   initializer:
-    classes: br.com.creditas.riskanalysis.web.configuration.WebConfiguration
+    classes: br.com.creditas.riskanalysis.configuration.WebConfiguration
 management:
   endpoints:
     web:

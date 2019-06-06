@@ -1,4 +1,4 @@
-package br.com.creditas.riskanalysis.web.configuration
+package br.com.creditas.riskanalysis.configuration
 
 import com.google.common.base.Predicates
 import org.springframework.boot.web.servlet.FilterRegistrationBean
