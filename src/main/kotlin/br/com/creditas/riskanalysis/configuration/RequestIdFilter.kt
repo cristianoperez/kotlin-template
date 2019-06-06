@@ -1,4 +1,4 @@
-package br.com.creditas.riskanalysis.web.configuration
+package br.com.creditas.riskanalysis.configuration
 
 import org.slf4j.MDC
 import org.springframework.stereotype.Component
