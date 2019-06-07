@@ -19,6 +19,8 @@ O projecto inclui
 
 [TODO] Adicionar terraform
 
+[TODO] Migrar para o https://github.com/orctom/gradle-archetype-plugin
+
 # Installation
 
 - Clone project
