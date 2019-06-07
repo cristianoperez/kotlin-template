@@ -39,6 +39,9 @@ module "standard_application" {
   launch_configuration_enable_monitoring = "${var.launch_configuration_enable_monitoring}"
   launch_configuration_root_block_device_volume_size = "${var.launch_configuration_root_block_device_volume_size}"
 
+  route53_record_alias_zone = "${var.route53_record_alias_zone}"
+  route53_record_name       = "${var.route53_record_name}"
+
   autoscaling_group_health_check_grace_period = "${var.autoscaling_group_health_check_grace_period}"
 
   ecs_service_load_balancer_container_port = "${var.ecs_service_load_balancer_container_port}"

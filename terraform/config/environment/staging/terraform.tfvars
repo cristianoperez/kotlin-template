@@ -30,9 +30,6 @@ autoscaling_group_health_check_grace_period = "120"
 ecs_service_load_balancer_container_port = "9294"
 ecs_service_load_balancer_container_name = "risk-analysis"
 
-ecs_load_balancer_zone_alias = "stg.creditas.io"
-ecs_load_balancer_record_name = "risk-analysis.stg.creditas.io"
-
 ecs_task_definition_container_definitions_template_file = "./config/templates/container_definitions.json.tmpl"
 
 iam_policy_service_description = "Risk Analysis Service Policy"
@@ -41,3 +38,6 @@ iam_role_service_assume_role_policy_file = "./config/templates/service_assume_ro
 iam_policy_instance_description = "Risk Analysis Policy Instance"
 iam_policy_instance_policy_file = "./config/environment/staging/instance_policy.json"
 iam_role_instance_assume_role_policy_file = "./config/templates/instance_assume_role.json"
+
+route53_record_alias_zone = "dev.creditas.io"
+route53_record_name = "risk-analysis.stg.creditas.io"

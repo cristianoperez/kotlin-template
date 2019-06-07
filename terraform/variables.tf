@@ -135,3 +135,13 @@ variable "lb_access_logs_bucket" {
 variable "lb_access_logs_prefix" {
   description = "Name of the bucket where our Load Balancer Access Logs will be stored."
 }
+
+# Route 53
+
+variable "route53_record_alias_zone" {
+  description = "DNS zone name"
+}
+
+variable "route53_record_name" {
+  description = "DNS record name for the application load balancer"
+}
