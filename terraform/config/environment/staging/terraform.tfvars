@@ -1,6 +1,6 @@
 # AWS_ACCOUNT_ID
 # https://creditas.atlassian.net/wiki/spaces/DEVOPS/pages/196633/AWS
-role_arn = "arn:aws:iam::794670448117:role/OrganizationAccountAccessRole"
+role_arn = "arn:aws:iam::794670448117:role/acessostg-admin"
 region   = "us-east-1"
 
 name = "risk-analysis"
