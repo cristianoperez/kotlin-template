@@ -30,6 +30,9 @@ autoscaling_group_health_check_grace_period = "120"
 ecs_service_load_balancer_container_port = "9294"
 ecs_service_load_balancer_container_name = "risk-analysis"
 
+ecs_load_balancer_zone_alias = "stg.creditas.io"
+ecs_load_balancer_record_name = "risk-analysis.stg.creditas.io"
+
 ecs_task_definition_container_definitions_template_file = "./config/templates/container_definitions.json.tmpl"
 
 iam_policy_service_description = "Risk Analysis Service Policy"
