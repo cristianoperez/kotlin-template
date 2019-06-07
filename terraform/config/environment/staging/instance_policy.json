@@ -29,7 +29,12 @@
     },
     {
       "Effect": "Allow",
-      "Action": "ssm:GetParametersByPath",
+      "Action": "ssm:GetParameter*",
+      "Resource": "arn:aws:ssm:*:AWS_ACCOUNT_ID:parameter/api-gw/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "ssm:GetParameter*",
       "Resource": "arn:aws:ssm:*:794670448117:parameter/risk-analysis/*"
     }
   ]
