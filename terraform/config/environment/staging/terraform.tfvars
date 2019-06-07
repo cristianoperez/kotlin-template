@@ -39,5 +39,5 @@ iam_policy_instance_description = "Risk Analysis Policy Instance"
 iam_policy_instance_policy_file = "./config/environment/staging/instance_policy.json"
 iam_role_instance_assume_role_policy_file = "./config/templates/instance_assume_role.json"
 
-route53_record_alias_zone = "dev.creditas.io"
+route53_record_alias_zone = "stg.creditas.io"
 route53_record_name = "risk-analysis.stg.creditas.io"
