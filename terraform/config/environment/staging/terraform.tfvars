@@ -21,7 +21,7 @@ db_instance_multi_az="false"
 
 launch_configuration_instance_type = "t3.micro"
 launch_configuration_ami = "ami-06bec82fb46167b4f"
-launch_configuration_key_name = "creditas-dev-us-east-1"
+launch_configuration_key_name = "creditas-stg-us-east-1"
 launch_configuration_enable_monitoring = "true"
 launch_configuration_root_block_device_volume_size = "10"
 
