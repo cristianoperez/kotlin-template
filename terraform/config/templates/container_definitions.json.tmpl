@@ -6,13 +6,12 @@
     "memoryReservation": 400,
     "essential": true,
     "logConfiguration": {
-      "logDriver": "logentries",
-      "secretOptions": [
-        {
-          "name": "logentries-token",
-          "valueFrom": "${application_ssm_arn}/LOGENTRIES_TOKEN"
-        }
-      ]
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/loan-applications",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "ecs"
+      }
     },
     "environment": [
       {
