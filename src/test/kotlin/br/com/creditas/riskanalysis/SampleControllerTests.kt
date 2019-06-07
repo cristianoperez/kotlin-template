@@ -1,34 +1,24 @@
-package br.com.creditas.riskanalysis.web
+package br.com.creditas.riskanalysis
 
-import br.com.creditas.riskanalysis.web.models.SampleEntity
-import br.com.creditas.riskanalysis.web.repositories.SampleRepository
+import br.com.creditas.riskanalysis.models.SampleEntity
+import br.com.creditas.riskanalysis.repositories.SampleRepository
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.nhaarman.mockitokotlin2.*
+import com.fasterxml.jackson.module.kotlin.readValue
 import org.amshove.kluent.`should be`
+import org.amshove.kluent.`should equal`
+import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldContainSame
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.*
 import org.springframework.http.MediaType
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-import java.util.*
-
-@Profile("test")
-@Configuration
-class SampleControllerTestsConfiguration {
-    @Bean
-    @Primary
-    fun mockedRepository(): SampleRepository {
-        return mock()
-    }
-}
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -46,21 +36,24 @@ class SampleControllerTests {
 
     @Test
     fun `When receiving a Sample entity by parameter, should pass it to the repository`() {
-        val id = UUID.randomUUID()
-        val entity = SampleEntity(id, "Title", "Description")
+        val entity = SampleEntity(title = "Title", description =  "Description")
         val params = mapper.writeValueAsString(entity)
-        whenever(sampleRepository.save(entity)).thenReturn(entity)
 
         mockMvc.perform(
             MockMvcRequestBuilders.post("/sample")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(params))
             .andExpect(MockMvcResultMatchers.status().isOk)
-            .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id.toString()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty)
             .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Title"))
             .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Description"))
+            .andDo {
+            val responseEntity = mapper.readValue<SampleEntity>(it.response.contentAsString)
+            val dbEntity = sampleRepository.findById(responseEntity.id)
 
-        verify(sampleRepository).save(entity)
+            dbEntity.isPresent shouldBe true
+            responseEntity `should equal` dbEntity.get()
+        }
     }
 
     @Test

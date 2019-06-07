@@ -1,0 +1,33 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:11-jdk-stretch-node-browsers
+      - image: postgres:11.2
+
+    working_directory: ~/risk-analysis
+
+    environment:
+      TZ: "/usr/share/zoneinfo/America/Sao_Paulo"
+      ENVIRONMENT: "test"
+
+    steps:
+      - checkout
+      - run:
+          name: Add machine dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install postgresql-client-9.6 -qy
+            echo "create database risk_analysis_test;" | psql postgres://postgres@localhost:5432/
+            gradle dependencies
+
+      - run:
+          name: Run build
+          command: |
+            gradle build --info
+
+      - run:
+          name: Run lint
+          command: |
+            gradle detektCheck
