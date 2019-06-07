@@ -126,16 +126,6 @@ variable "iam_role_instance_assume_role_policy_file" {
   description = "The policy that grants an entity permission to assume the role."
 }
 
-# LOAD BALANCER
-
-variable "lb_access_logs_bucket" {
-  description = "Name of the bucket where our Load Balancer Access Logs will be stored."
-}
-
-variable "lb_access_logs_prefix" {
-  description = "Name of the bucket where our Load Balancer Access Logs will be stored."
-}
-
 # Route 53
 
 variable "route53_record_alias_zone" {

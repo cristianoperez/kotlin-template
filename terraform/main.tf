@@ -55,7 +55,4 @@ module "standard_application" {
   iam_policy_instance_description = "${var.iam_policy_instance_description}"
   iam_policy_instance_policy_file = "${var.iam_policy_instance_policy_file}"
   iam_role_instance_assume_role_policy_file = "${var.iam_role_instance_assume_role_policy_file}"
-
-  lb_access_logs_bucket = "${var.lb_access_logs_bucket}"
-  lb_access_logs_prefix = "${var.lb_access_logs_prefix}"
 }
