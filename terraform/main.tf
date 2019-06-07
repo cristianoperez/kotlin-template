@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "standard_application" {
-  source = "git::ssh://git@github.com/creditas/terraform-applications.git//modules/standard_application?ref=updating-ecs-cluster-for-acm-usage"
+  source = "git::ssh://git@github.com/creditas/terraform-applications.git//modules/standard_application_with_rds?ref=missing-route53-configurations"
 
   name = "${var.name}"
   squad = "${var.squad}"
