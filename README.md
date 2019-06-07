@@ -7,6 +7,8 @@ O projecto inclui
 - Terraform
 - CircleCI (test/release)
 - Docker
+- New relic
+- Log entries
 
 
 [TODO] Adicionar step de build no circle
