@@ -21,6 +21,8 @@ O projecto inclui
 
 [TODO] Migrar para o https://github.com/orctom/gradle-archetype-plugin
 
+[TODO] Migrar para o https://github.com/spring-io/start.spring.io/
+
 # Installation
 
 - Clone project
