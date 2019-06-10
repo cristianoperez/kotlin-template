@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "standard_application" {
-  source = "git::ssh://git@github.com/creditas/terraform-applications.git//modules/standard_application_with_rds?ref=missing-route53-configurations"
+  source = "git::ssh://git@github.com/creditas/terraform-applications.git//modules/standard_application_with_rds?ref=bumping-rds-version"
 
   name = "${var.name}"
   squad = "${var.squad}"
