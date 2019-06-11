@@ -16,11 +16,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Update host file
-          command: |
-            echo 127.0.0.1 postgres | sudo tee -a /etc/hosts
-            cat /etc/hosts
-      - run:
           name: Add machine dependencies
           command: |
             sudo apt-get update
