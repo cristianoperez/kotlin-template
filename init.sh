@@ -8,4 +8,4 @@ echo "ENVIRONMENT_NAME: ${ENVIRONMENT_NAME}"
 exec java -Xms380m \
   -Dserver.port=9292 \
   -Djava.security.egd=file:/dev/./urandom \
-  -jar /app/risk-analysis-1.0-SNAPSHOT.jar
+  -jar /app/kotlin-spring-sample-1.0-SNAPSHOT.jar

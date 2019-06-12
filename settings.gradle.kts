@@ -1,1 +1,1 @@
-rootProject.name = "risk-analysis"
+rootProject.name = "kotlin-spring-sample"

@@ -19,7 +19,7 @@ COPY . $APP_DIR
 
 # Build project
 RUN gradle build -x test
-RUN cp $APP_DIR/build/libs/risk-analysis-1.0-SNAPSHOT.jar $APP_DIR/risk-analysis-1.0-SNAPSHOT.jar
+RUN cp $APP_DIR/build/libs/kotlin-spring-sample-1.0-SNAPSHOT.jar $APP_DIR/kotlin-spring-sample-1.0-SNAPSHOT.jar
 
 # -----------------------------------------------------------------------------
 # Layer: production
@@ -35,7 +35,7 @@ ENTRYPOINT ["/tini", "--"]
 WORKDIR /app
 
 COPY --from=builder /app/init.sh /app
-COPY --from=builder /app/risk-analysis-1.0-SNAPSHOT.jar /app/risk-analysis-1.0-SNAPSHOT.jar
+COPY --from=builder /app/kotlin-spring-sample-1.0-SNAPSHOT.jar /app/kotlin-spring-sample-1.0-SNAPSHOT.jar
 
 EXPOSE 9292
 

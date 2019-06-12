@@ -1,4 +1,4 @@
-package br.com.creditas.riskanalysis.configuration
+package br.com.creditas.kotlinspringsample.configuration
 
 import com.google.common.base.Predicates
 import org.springframework.boot.web.servlet.FilterRegistrationBean

@@ -1,7 +1,7 @@
-package br.com.creditas.riskanalysis
+package br.com.creditas.kotlinspringsample
 
-import br.com.creditas.riskanalysis.models.SampleEntity
-import br.com.creditas.riskanalysis.repositories.SampleRepository
+import br.com.creditas.kotlinspringsample.models.SampleEntity
+import br.com.creditas.kotlinspringsample.repositories.SampleRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.amshove.kluent.`should be`

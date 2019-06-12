@@ -1,10 +1,10 @@
 version: '2'
 
 services:
-  risk-analysis:
+  kotlin-spring-sample:
     build: .
-    image: creditas/risk-analysis
-    hostname: risk-analysis
+    image: creditas/kotlin-spring-sample
+    hostname: kotlin-spring-sample
     networks:
       - bankfacil
     ports:
