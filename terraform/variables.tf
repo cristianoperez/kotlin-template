@@ -102,20 +102,12 @@ variable "ecs_task_definition_container_definitions_template_file" {
   description = "A list of valid container definitions provided as a single valid JSON document. Please note that you should only provide values that are part of the container definition document. For a detailed description of what parameters are available"
 }
 
-variable "iam_policy_service_description" {
-  description = "The description of the policy."
-}
-
 variable "iam_policy_service_policy_file" {
   description = "The policy file document of the policy."
 }
 
 variable "iam_role_service_assume_role_policy_file" {
   description = "The policy that grants an entity permission to assume the role."
-}
-
-variable "iam_policy_instance_description" {
-  description = "The description of the policy."
 }
 
 variable "iam_policy_instance_policy_file" {

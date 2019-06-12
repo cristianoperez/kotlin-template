@@ -49,10 +49,8 @@ module "standard_application" {
 
   ecs_task_definition_container_definitions_template_file = "${var.ecs_task_definition_container_definitions_template_file}"
 
-  iam_policy_service_description = "${var.iam_policy_service_description}"
   iam_policy_service_policy_file = "${var.iam_policy_service_policy_file}"
   iam_role_service_assume_role_policy_file = "${var.iam_role_service_assume_role_policy_file}"
-  iam_policy_instance_description = "${var.iam_policy_instance_description}"
   iam_policy_instance_policy_file = "${var.iam_policy_instance_policy_file}"
   iam_role_instance_assume_role_policy_file = "${var.iam_role_instance_assume_role_policy_file}"
 }

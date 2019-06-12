@@ -32,10 +32,8 @@ ecs_service_load_balancer_container_name = "risk-analysis"
 
 ecs_task_definition_container_definitions_template_file = "./config/templates/container_definitions.json.tmpl"
 
-iam_policy_service_description = "Risk Analysis Service Policy"
 iam_policy_service_policy_file = "./config/templates/service_policy.json"
 iam_role_service_assume_role_policy_file = "./config/templates/service_assume_role.json"
-iam_policy_instance_description = "Risk Analysis Policy Instance"
 iam_policy_instance_policy_file = "./config/environment/staging/instance_policy.json"
 iam_role_instance_assume_role_policy_file = "./config/templates/instance_assume_role.json"
 
