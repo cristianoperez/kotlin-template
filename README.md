@@ -1,6 +1,17 @@
-# kotlin-spring-sample
+# Kotlin Spring Sample
 
-Aplicação responsável pela manutenção e versionamento das análises de risco dos produtos da Creditas.
+Projeto de exemplo de api simples utilizando Spring em Kotlin. Esse projeto pode ser utilizado como bootstrap para criação de microservices Kotlin na Creditas (seguir instruções abaixo). 
+
+## Bootstrap
+
+Após forkar e baixar o projeto em sua máqiuna local, rodar os seguintes comandos:
+
+```sh
+sudo chmod +x rename-project.sh
+./rename-project.sh novo-nome
+```
+
+Onde `novo-nome` é o nome de destino do projeto, exemplo: `risk-analysis`.
 
 ## Começo rápido
 
@@ -12,7 +23,7 @@ Alguns *targets* interessantes do Gradle (sistema de build):
 
 * `./gradlew dependencies`: Baixa as dependências
 * `./gradlew build`: Faz a build do projeto inteiro (baixa as dependências também)
-* `./gradlew detektCheck`: Corrige (erros simples) e reporta problemas de formatação (linter)
+* `./gradlew detektCheck`: Linter que corrige (erros simples) e reporta problemas de formatação 
 
 ### Usando Docker
 
@@ -26,9 +37,9 @@ Supondo que você tenha instalado:
 [Docker Dev]: https://github.com/Creditas/docker-dev "A CLI for simplify the creation of development environment."
 [Docker Compose]: https://docs.docker.com/compose/install/#install-compose "Install Docker Compose"
 
-Primeiro, suba o postgres via docker-dev. Para isso, na pasta do docker-dev execute:
+Primeiro, suba o postgres via [docker-dev](https://github.com/creditas/docker-dev):
 
-    $ docker-compose up -d postgres
+    $ docker-compose up -d
 
 Após a inicialização do banco, é necessário criar a base de dados da aplicação:
 
@@ -36,16 +47,15 @@ Após a inicialização do banco, é necessário criar a base de dados da aplica
 
 Então, você pode executar, de dentro da raiz do projeto:
 
-    $ docker-compose build
     $ docker-compose up -d
 
-Para verificar se o build aconteceu com sucesso, basta chamar o health check:
+Para verificar se a aplicação subiu com sucesso, basta chamar o health check:
 
 [http://localhost:80/health](http://localhost:80/health)
 
 ### Executando testes e lint
 
-É possível usar o script gerado pelo gradle para executar tasks, como rodar os testes ou verificar o lint. O seguinte comando roda o build da aplicação, os testes e o lint
+É possível executar comandos adicionados no gradle (via plugins inclusos no `build.gradle`) para rodar tasks, como testes ou lint. O seguinte comando roda o build da aplicação, os testes e o lint
 
 Dessa forma, antes de realizar um commit é possível verificar qualquer tipo de problema que sua mudança tenha causado
 
@@ -55,15 +65,19 @@ Dessa forma, antes de realizar um commit é possível verificar qualquer tipo de
 
 ### As biblitecas usadas são:
 
-* Gradle
-* Spring
-* Kluent: fluent assertions
-* Mockito Kotlin: wrapper do mockito com sintaxe kotlin-like
-* Jackson: serializador de JSON
-* Logback: consolidador/formatador de logs
+* Gradle: Ferramenta de build e gerenciador de dependências ("Rake" + "Bundler")
+* Spring: Framework Web ("Rails")
+* Spring Data: Framework de persistência ("Sequel")
+* Flyway: Gerenciador de migrations (criadas em SQL puro)
+* Kluent: Fluent assertions
+* Mockito Kotlin: wrapper do mockito com sintaxe kotlin-friendly
+* Jackson: Serializador/deserializador JSON
+* Logback: Consolidador/formatador de logs no stdout (redirecionamos esse log pro [LogEntries via AWS](https://stackoverflow.com/q/52040329/890890))
+* Swagger: Geração automática de documentação de api com UI acessível via `http://localhost:8080/swagger-ui.html`
+* Actuator: Ferramenta com features de monitoramento (é ela que disponibiliza a rota `/health` na aplicação)
 
 ### As camadas do projeto:
-Por se tratar de um projeto simples, inicialmente definimos uma camada única (Web) para tratar de toda estrutura, que será separada através de packages.
+Por se tratar de um projeto simples, deixamos todas as dependências diretamente no `gradle.build` raiz e os arquivos dentro da estrutura estão semanticamente separados apenas via packages (namespaces/pastas). *Para uma estrutura mais segmentada em camadas basta criar subprojetos gradle (com arquivos `build.gradle` individuais) como feito no projeto de [policies](https://github.com/creditas/policies). A única diferença é que em policies está sendo utilizado groovy como sintaxe do arquivo gradle, e aqui estamos utilizando Kotlin Script por questões de tipagem, mas a sintaxe é extremamente próxima.*
 
 #### Packages do módulo Web:
 * **Controller**: Controllers e actions do Spring, disparo de comandos, orquestrações de tarefas
