@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProperty scope="context" name="logentriesToken" source="logentries.token"/>
+    <appender name="LE" class="com.logentries.logback.LogentriesAppender">
+        <Token>${logentriesToken}</Token>
+        <Debug>False</Debug>
+        <Ssl>False</Ssl>
+        <facility>USER</facility>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n%rEx</pattern>
+        </encoder>
+    </appender>
+</configuration>

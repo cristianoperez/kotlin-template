@@ -8,7 +8,7 @@ services:
     networks:
       - bankfacil
     ports:
-      - "80:9292"
+      - "80:8080"
 
 networks:
   bankfacil:

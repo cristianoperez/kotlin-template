@@ -15,6 +15,10 @@ COPY ./build.gradle.kts ./settings.gradle.kts $APP_DIR/
 
 RUN gradle dependencies
 
+RUN curl -O "http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
+    unzip newrelic-java.zip
+
+
 COPY . $APP_DIR
 
 # Build project
@@ -36,7 +40,9 @@ WORKDIR /app
 
 COPY --from=builder /app/init.sh /app
 COPY --from=builder /app/kotlin-spring-sample-1.0-SNAPSHOT.jar /app/kotlin-spring-sample-1.0-SNAPSHOT.jar
+COPY --from=builder /app/newrelic/newrelic.jar /app/
+COPY --from=builder /app/newrelic/newrelic.yml /app/
 
-EXPOSE 9292
+EXPOSE 8080
 
 CMD ["sh", "init.sh"]

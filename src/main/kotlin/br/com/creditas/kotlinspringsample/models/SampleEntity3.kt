@@ -4,13 +4,14 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@Table(name = "sample_entity")
-class SampleEntity(
+@Table(name = "sample_entity3")
+class SampleEntity3(
     @Column(name = "title")
     val title: String,
     @Column(name = "description")
     val description: String
-) {
+){
     @Id
-    val id: UUID = UUID.randomUUID()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0
 }
