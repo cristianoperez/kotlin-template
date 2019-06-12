@@ -1,11 +1,11 @@
-# risk-analysis
+# kotlin-spring-sample
 
 Aplicação responsável pela manutenção e versionamento das análises de risco dos produtos da Creditas.
 
 ## Começo rápido
 
 * URL Local: http://localhost:8080
-* Staging: http://risk-analysis.stg.creditas.io
+* Staging: http://kotlin-spring-sample.stg.creditas.io
 * [Documentação da API (local via Swagger)](http://localhost:8080/swagger-ui.html)
 
 Alguns *targets* interessantes do Gradle (sistema de build):
@@ -32,7 +32,7 @@ Primeiro, suba o postgres via docker-dev. Para isso, na pasta do docker-dev exec
 
 Após a inicialização do banco, é necessário criar a base de dados da aplicação:
 
-    $ docker exec -it postgres psql -U postgres -c "create database risk_analysis"
+    $ docker exec -it postgres psql -U postgres -c "create database kotlin_spring_sample"
 
 Então, você pode executar, de dentro da raiz do projeto:
 

@@ -1,4 +1,4 @@
-package br.com.creditas.riskanalysis.models
+package br.com.creditas.kotlinspringsample.models
 
 import java.util.*
 import javax.persistence.Entity
