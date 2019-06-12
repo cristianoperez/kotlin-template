@@ -1,7 +1,7 @@
-package br.com.creditas.riskanalysis.controllers
+package br.com.creditas.kotlinspringsample.controllers
 
-import br.com.creditas.riskanalysis.models.SampleEntity
-import br.com.creditas.riskanalysis.repositories.SampleRepository
+import br.com.creditas.kotlinspringsample.models.SampleEntity
+import br.com.creditas.kotlinspringsample.repositories.SampleRepository
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

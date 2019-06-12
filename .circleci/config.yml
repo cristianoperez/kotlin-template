@@ -7,7 +7,7 @@ jobs:
       - image: postgres:11.2
 
     parallelism: 2
-    working_directory: ~/risk-analysis
+    working_directory: ~/kotlin-spring-sample
 
     environment:
       TZ: "/usr/share/zoneinfo/America/Sao_Paulo"
@@ -16,11 +16,15 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Update host file
+          command: |
+            echo 127.0.0.1 postgres | sudo tee -a /etc/hosts
+      - run:
           name: Add machine dependencies
           command: |
             sudo apt-get update
             sudo apt-get install postgresql-client-9.6 -qy
-            echo "create database risk_analysis_test;" | psql postgres://postgres@localhost:5432/
+            echo "create database kotlin_spring_sample_test;" | psql postgres://postgres@localhost:5432/
             gradle dependencies
 
       - run:
@@ -38,10 +42,10 @@ build_push_deploy_stg:
     - image: 794670448117.dkr.ecr.us-east-1.amazonaws.com/ecs-deploy:latest
       environment:
         AWS_DEFAULT_REGION: 'us-east-1'
-        REPOSITORY: '794670448117.dkr.ecr.us-east-1.amazonaws.com/risk-analysis'
-        CLUSTER: risk-analysis
-        SERVICE: risk-analysis
-        TASK: risk-analysis
+        REPOSITORY: '794670448117.dkr.ecr.us-east-1.amazonaws.com/kotlin-spring-sample'
+        CLUSTER: kotlin-spring-sample
+        SERVICE: kotlin-spring-sample
+        TASK: kotlin-spring-sample
   steps:
     - checkout
     - setup_remote_docker
