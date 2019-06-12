@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 module "standard_application" {
-  source = "git::ssh://git@github.com/creditas/terraform-applications.git//modules/standard_application_with_rds?ref=bumping-rds-version"
+  source = "git::ssh://git@github.com/creditas/terraform-applications.git//modules/standard_application_with_rds?ref=0.0.3"
 
   name = "${var.name}"
   squad = "${var.squad}"
