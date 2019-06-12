@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "sample_entity")
-class SampleEntity(
+data class SampleEntity(
     @Column(name = "title")
     val title: String,
     @Column(name = "description")
