@@ -65,16 +65,16 @@ Dessa forma, antes de realizar um commit é possível verificar qualquer tipo de
 
 ### As biblitecas usadas são:
 
-* Gradle: Ferramenta de build e gerenciador de dependências ("Rake" + "Bundler")
-* Spring: Framework Web ("Rails")
-* Spring Data: Framework de persistência ("Sequel")
-* Flyway: Gerenciador de migrations (criadas em SQL puro)
-* Kluent: Fluent assertions
-* Mockito Kotlin: wrapper do mockito com sintaxe kotlin-friendly
-* Jackson: Serializador/deserializador JSON
-* Logback: Consolidador/formatador de logs no stdout (redirecionamos esse log pro [LogEntries via AWS](https://stackoverflow.com/q/52040329/890890))
-* Swagger: Geração automática de documentação de api com UI acessível via `http://localhost:8080/swagger-ui.html`
-* Actuator: Ferramenta com features de monitoramento (é ela que disponibiliza a rota `/health` na aplicação)
+* **Gradle**: Ferramenta de build e gerenciador de dependências ("Rake" + "Bundler")
+* **Spring**: Framework Web ("Rails")
+* **Spring Data**: Framework de persistência ("Sequel")
+* **Flyway**: Gerenciador de migrations (criadas em SQL puro)
+* **Kluent**: Fluent assertions
+* **Mockito Kotlin**: wrapper do mockito com sintaxe kotlin-friendly
+* **Jackson**: Serializador/deserializador JSON
+* **Logback**: Consolidador/formatador de logs no stdout (redirecionamos esse log pro [LogEntries via AWS](https://stackoverflow.com/q/52040329/890890))
+* **Swagger**: Geração automática de documentação de api com UI acessível via `http://localhost:8080/swagger-ui.html`
+* **Actuator**: Ferramenta com features de monitoramento (é ela que disponibiliza a rota `/health` na aplicação)
 
 ### As camadas do projeto:
 Por se tratar de um projeto simples, deixamos todas as dependências diretamente no `gradle.build` raiz e os arquivos dentro da estrutura estão semanticamente separados apenas via packages (namespaces/pastas). *Para uma estrutura mais segmentada em camadas basta criar subprojetos gradle (com arquivos `build.gradle` individuais) como feito no projeto de [policies](https://github.com/creditas/policies). A única diferença é que em policies está sendo utilizado groovy como sintaxe do arquivo gradle, e aqui estamos utilizando Kotlin Script por questões de tipagem, mas a sintaxe é extremamente próxima.*
