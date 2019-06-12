@@ -15,7 +15,9 @@ management:
       base-path: ~
 spring:
   datasource:
-    url: "jdbc:postgresql://postgres:5432/kotlin_spring_sample?user=postgres"
+    url: "jdbc:postgresql://localhost:5432/kotlin_spring_sample"
+      username: postgres
+      password: root
   jpa:
     properties:
       hibernate:

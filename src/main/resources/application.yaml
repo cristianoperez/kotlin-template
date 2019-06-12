@@ -15,7 +15,7 @@ management:
       base-path: ~
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/banquinho"
+    url: "jdbc:postgresql://localhost:5432/kotlin_spring_sample"
     username: postgres
     password: root
   jpa:
