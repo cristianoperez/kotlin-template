@@ -25,6 +25,10 @@
         "valueFrom": "${gateway_ssm_arn}/USER_DATA_SIGNATURE_PUBLIC_KEY"
       },
       {
+        "name": "DATABASE_URL",
+        "valueFrom": "${application_ssm_arn}/DATABASE_URL"
+      },
+      {
         "name": "NEWRELIC_TOKEN",
         "valueFrom": "${application_ssm_arn}/NEWRELIC_TOKEN"
       }
