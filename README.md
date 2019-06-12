@@ -85,3 +85,8 @@ Por se tratar de um projeto simples, deixamos todas as dependências diretamente
 * **Infra**: Questões que envolvem tecnologia puramente (acesso a base
   de dados, envio de emails, chamadas pra APIs externas)
 
+## Infraestrutura
+
+Esse projeto foi feito pra funcionar corretamente com nosso módulo [Terraform Standard Application](https://github.com/Creditas/terraform-applications).
+
+Siga as instruções no repositório do link acima pra conseguir subir um ambiente pra aplicação
