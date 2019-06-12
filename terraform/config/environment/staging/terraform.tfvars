@@ -26,7 +26,7 @@ launch_configuration_root_block_device_volume_size = "10"
 
 autoscaling_group_health_check_grace_period = "120"
 
-ecs_service_load_balancer_container_port = "9294"
+ecs_service_load_balancer_container_port = "9292"
 ecs_service_load_balancer_container_name = "risk-analysis"
 
 ecs_task_definition_container_definitions_template_file = "./config/templates/container_definitions.json.tmpl"
