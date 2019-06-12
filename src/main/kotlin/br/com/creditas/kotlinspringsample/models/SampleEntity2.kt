@@ -10,7 +10,7 @@ data class SampleEntity2(
     val title: String,
     @Column(name = "description")
     val description: String
-){
+) {
     @Id
     @GeneratedValue
     val id: UUID? = null

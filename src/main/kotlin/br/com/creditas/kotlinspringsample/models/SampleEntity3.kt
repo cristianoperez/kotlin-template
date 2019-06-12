@@ -1,6 +1,5 @@
 package br.com.creditas.kotlinspringsample.models
 
-import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -10,7 +9,7 @@ data class SampleEntity3(
     val title: String,
     @Column(name = "description")
     val description: String
-){
+) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
