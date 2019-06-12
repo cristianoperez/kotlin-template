@@ -4,38 +4,64 @@ jobs:
   test_app:
     docker:
       - image: circleci/openjdk:11-jdk-stretch-node-browsers
-      - image: postgres:11.2
+      - image: postgres:11.3-alpine
+        environment:
+          POSTGRES_DB: kotlin_spring_sample_test
 
     parallelism: 2
     working_directory: ~/kotlin-spring-sample
 
-    environment:
-      TZ: "/usr/share/zoneinfo/America/Sao_Paulo"
-      ENVIRONMENT: "test"
-
     steps:
       - checkout
-      - run:
-          name: Update host file
-          command: |
-            echo 127.0.0.1 postgres | sudo tee -a /etc/hosts
-      - run:
-          name: Add machine dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install postgresql-client-9.6 -qy
-            echo "create database kotlin_spring_sample_test;" | psql postgres://postgres@localhost:5432/
-            gradle dependencies
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-
+
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
 
       - run:
           name: Run tests
-          command: |
-            gradle test --info
+          command: gradle test -i
 
       - run:
           name: Run lint
           command: |
             gradle detektCheck
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/junit/
+            find . -type f -regex ".*/build/test-results/.*xml"
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/junit/ \;
+          when: always
+      - store_test_results:
+          path: ~/junit
+      - store_artifacts:
+          path: ~/junit
+
+release:
+  docker:
+    - image: circleci/openjdk:11-jdk
+      environment:
+        EMAIL: dev@creditas.com.br
+        GIT_AUTHOR_NAME: developer
+        GIT_COMMITTER_NAME: developer
+
+  working_directory: ~/kotlin-spring-sample
+
+  steps:
+    - checkout
+    - run:
+        name: Release
+        command: gradle release -Prelease.useAutomaticVersion=true -x test
 
 build_push_deploy_stg:
   docker:
@@ -49,21 +75,28 @@ build_push_deploy_stg:
   steps:
     - checkout
     - setup_remote_docker
+
     - run:
-        name: Login on ECR
-        command: |
-          aws ecr get-login --no-include-email | sh
-          echo "export IMAGE_NAME=\"${REPOSITORY}:$(git rev-parse --short $CIRCLE_SHA1)\"" | tee "${BASH_ENV}"
+        name: Build image
+        command: docker build -t REPOSITORY:latest .
+
     - run:
-        name: build image
+        name: set TAG variable
         command: |
-          docker build -t $IMAGE_NAME .
+          echo 'export TAG=$(git describe --abbrev=0 --tags)' | tee $BASH_ENV
+
     - run:
-        name: push to ECR
+        name: Docker tag
+        command: docker tag ${REPOSITORY} ${REPOSITORY}:$TAG
+
+    - run:
+        name: Login to ECR
         command: |
-          docker push $IMAGE_NAME
-          docker tag $IMAGE_NAME $REPOSITORY:latest
-          docker push  $REPOSITORY:latest
+          $(aws ecr get-login --no-include-email --region us-east-1)
+    - run:
+        name: Push image to ECR
+        command: docker push ${REPOSITORY}
+
     - run:
         name: deploy
         command: |
@@ -81,3 +114,10 @@ workflows:
             branches:
               only:
                 - staging
+      - release:
+          requires:
+            - test_app
+          filters:
+            branches:
+              only:
+                - master
