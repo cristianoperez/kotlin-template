@@ -87,6 +87,6 @@ Por se tratar de um projeto simples, deixamos todas as dependências diretamente
 
 ## Infraestrutura
 
-Esse projeto foi feito pra funcionar corretamente com nosso módulo [Terraform Standard Application](https://github.com/Creditas/terraform-applications).
+Esse projeto foi feito pra funcionar de acordo com nosso módulo [Terraform Standard Application](https://github.com/Creditas/terraform-applications).
 
 Siga as instruções no repositório do link acima pra conseguir subir um ambiente pra aplicação
