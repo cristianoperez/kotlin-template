@@ -30,8 +30,7 @@ module "standard_application" {
 
   sg_name_ssh_office = "${var.sg_name_ssh_office}"
   sg_name_healthcheck_elb_to_ec2 = "${var.sg_name_healthcheck_elb_to_ec2}"
-  sg_name_http_office = "${var.sg_name_http_office}"
-  sg_name_https_office = "${var.sg_name_https_office}"
+  sg_name_load_balancer = "${var.sg_name_load_balancer}"
 
   launch_configuration_instance_type = "${var.launch_configuration_instance_type}"
   launch_configuration_ami = "${var.launch_configuration_ami}"

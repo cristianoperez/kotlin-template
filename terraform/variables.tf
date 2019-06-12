@@ -38,12 +38,8 @@ variable "sg_name_healthcheck_elb_to_ec2" {
   description = "The name of the Security Group responsible for Healthcheck rules from ELB against our EC2 instances."
 }
 
-variable "sg_name_http_office" {
-  description = "The name of the Security Group repsonsible for HTTP rules from the Office"
-}
-
-variable "sg_name_https_office" {
-  description = "The name of the Security Group repsonsible for HTTPS rules from the Office"
+variable "sg_name_load_balancer" {
+  description = "The name of the Security Group that will be added to the load balancer"
 }
 
 # RDS

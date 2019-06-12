@@ -11,8 +11,7 @@ application = "risk-analysis"
 
 sg_name_ssh_office = "ssh-office-us-east-1-stg"
 sg_name_healthcheck_elb_to_ec2 = "elb_healthcheck_ec2"
-sg_name_http_office = "http_office"
-sg_name_https_office = "http_office"
+sg_name_load_balancer = "ACESSO-WEB"
 
 db_instance_instance_class="db.t2.small"
 db_instance_username="postgres"
