@@ -27,6 +27,8 @@ module "standard_application" {
   db_instance_username = "${var.db_instance_username}"
   db_instance_name = "${var.db_instance_name}"
   db_instance_multi_az = "${var.db_instance_multi_az}"
+  db_use_jdbc_format = "true"
+
 
   sg_name_ssh_office = "${var.sg_name_ssh_office}"
   sg_name_healthcheck_elb_to_ec2 = "${var.sg_name_healthcheck_elb_to_ec2}"
