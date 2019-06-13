@@ -77,8 +77,43 @@ build_push_deploy_stg:
     - setup_remote_docker
 
     - run:
+        name: set TAG variable
+        command: |
+          echo 'export TAG=$(git describe --abbrev=0 --tags)' | tee $BASH_ENV
+
+    - run:
         name: Build image
-        command: docker build -t ${REPOSITORY}:latest .
+        command: docker build -t ${REPOSITORY}:$TAG .
+
+    - run:
+        name: Docker tag
+        command: docker tag ${REPOSITORY} ${REPOSITORY}:$TAG
+
+    - run:
+        name: Login to ECR
+        command: |
+          $(aws ecr get-login --no-include-email --region us-east-1)
+    - run:
+        name: Push image to ECR
+        command: docker push ${REPOSITORY}
+
+    - run:
+        name: deploy
+        command: |
+          ecs deploy $CLUSTER $SERVICE -i $TASK $IMAGE_NAME --timeout 500
+
+build_push_deploy_prod:
+  docker:
+    - image: 794670448117.dkr.ecr.us-east-1.amazonaws.com/ecs-deploy:latest
+      environment:
+        AWS_DEFAULT_REGION: 'us-east-1'
+        REPOSITORY: '794670448117.dkr.ecr.us-east-1.amazonaws.com/kotlin-spring-sample'
+        CLUSTER: kotlin-spring-sample
+        SERVICE: kotlin-spring-sample
+        TASK: kotlin-spring-sample
+  steps:
+    - checkout
+    - setup_remote_docker
 
     - run:
         name: set TAG variable
@@ -86,8 +121,12 @@ build_push_deploy_stg:
           echo 'export TAG=$(git describe --abbrev=0 --tags)' | tee $BASH_ENV
 
     - run:
+        name: Build image
+        command: docker pull ${REPOSITORY}:$TAG .
+
+    - run:
         name: Docker tag
-        command: docker tag ${REPOSITORY} ${REPOSITORY}:$TAG
+        command: docker tag ${REPOSITORY} ${REPOSITORY}:latest
 
     - run:
         name: Login to ECR
@@ -121,4 +160,11 @@ workflows:
             branches:
               only:
                 - staging
+      - build_push_deploy_prod:
+                requires:
+                  - build_push_deploy_stg
+                filters:
+                  branches:
+                    only:
+                      - master
 
