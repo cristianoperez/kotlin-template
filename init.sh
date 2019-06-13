@@ -13,4 +13,5 @@ exec java ${JVM_OPS} -Djava.security.egd=file:/dev/./urandom \
     -Dnewrelic.config.license_key=${NEWRELIC_LICENSE_KEY} \
     -Dnewrelic.config.app_name=${NEWRELIC_APP_NAME} \
     -Dnewrelic.config.distributed_tracing.enabled=true \
+    -Dspring.datasource.url=${DATABASE_URL} \
     -jar /app/kotlin-spring-sample-1.0-SNAPSHOT.jar
