@@ -9,9 +9,7 @@ import javax.persistence.Table
 @Entity
 @Table(name = "sample_entity")
 data class SampleEntity(
-    @Column(name = "title")
     val title: String,
-    @Column(name = "description")
     val description: String
 ) {
     @Id
