@@ -22,7 +22,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-@ActiveProfiles("test")
 @AutoConfigureMockMvc
 class SampleControllerTests {
     @Autowired

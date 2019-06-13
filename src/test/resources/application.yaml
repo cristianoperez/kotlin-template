@@ -8,15 +8,14 @@ logging:
     org:
       zalando:
         logbook: TRACE
-  pattern:
-    console: "%d{dd-MM-yyyy HH:mm:ss} %highlight(%-5level) %magenta(%logger.%M) - %msg%n%rEx"
+  pattern: "console:%d{dd-MM-yyyy HH:mm:ss} %highlight(%-5level) %magenta(%logger.%M) - %msg%n%rEx"
 management:
   endpoints:
     web:
       base-path: ~
 spring:
   datasource:
-    url: "jdbc:postgresql://localhost:5432/kotlin_spring_sample"
+    url: "jdbc:postgresql://localhost:5432/kotlin_spring_sample_test"
     username: postgres
     password: root
   jpa:
