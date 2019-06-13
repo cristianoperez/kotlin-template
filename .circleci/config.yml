@@ -78,7 +78,7 @@ build_push_deploy_stg:
 
     - run:
         name: Build image
-        command: docker build -t REPOSITORY:latest .
+        command: docker build -t ${REPOSITORY}:latest .
 
     - run:
         name: set TAG variable

@@ -16,7 +16,6 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     jcenter()
-    mavenCentral()
 }
 
 val swaggerVersion = "2.9.2"
