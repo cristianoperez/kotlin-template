@@ -107,17 +107,18 @@ workflows:
   run_pipeline:
     jobs:
       - test_app
-      - build_push_deploy_stg:
-          requires:
-            - test_app
-          filters:
-            branches:
-              only:
-                - staging
       - release:
           requires:
             - test_app
           filters:
             branches:
               only:
-                - master
+                - staging
+      - build_push_deploy_stg:
+          requires:
+            - release
+          filters:
+            branches:
+              only:
+                - staging
+
