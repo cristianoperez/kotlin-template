@@ -2,13 +2,13 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <springProperty scope="context" name="logentriesToken" source="logentries.token"/>
-    <appender name="LE" class="com.logentries.logback.LogentriesAppender">
-        <Token>${logentriesToken}</Token>
-        <Debug>False</Debug>
-        <Ssl>False</Ssl>
-        <facility>USER</facility>
+    <appender name="STDOUT"
+              class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n%rEx</pattern>
+            <pattern>{"log_level": "%-5level", "request_id": "%X{request-id}", "content": %msg}%n</pattern>
         </encoder>
     </appender>
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
 </configuration>
