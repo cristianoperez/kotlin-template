@@ -24,7 +24,6 @@ COPY . $APP_DIR
 
 # Build project
 RUN gradle build -x test
-RUN cp $APP_DIR/build/libs/kotlin-spring-sample-0.0.1-SNAPSHOT.jar $APP_DIR/kotlin-spring-sample-0.0.1-SNAPSHOT.jar
 
 # -----------------------------------------------------------------------------
 # Layer: production
@@ -40,7 +39,7 @@ ENTRYPOINT ["/tini", "--"]
 WORKDIR /app
 
 COPY --from=builder /app/init.sh /app
-COPY --from=builder /app/kotlin-spring-sample-0.0.1-SNAPSHOT.jar /app/kotlin-spring-sample-0.0.1-SNAPSHOT.jar
+COPY --from=builder /app/build/libs/kotlin-spring-sample-*.jar /app/
 COPY --from=builder /app/newrelic/newrelic.jar /app/
 COPY --from=builder /app/newrelic/newrelic.yml /app/
 

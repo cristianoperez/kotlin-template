@@ -14,4 +14,4 @@ exec java ${JVM_OPS} -Djava.security.egd=file:/dev/./urandom \
     -Dnewrelic.config.app_name=${NEWRELIC_APP_NAME} \
     -Dnewrelic.config.distributed_tracing.enabled=true \
     -Dspring.profiles.active=${ENVIRONMENT_NAME} \
-    -jar /app/kotlin-spring-sample-0.0.1-SNAPSHOT.jar
+    -jar /app/kotlin-spring-sample-*.jar
