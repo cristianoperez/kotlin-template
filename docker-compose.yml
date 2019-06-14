@@ -5,8 +5,7 @@ services:
     build: .
     image: creditas/kotlin-spring-sample
     hostname: kotlin-spring-sample
-    networks:
-      - bankfacil
+    network_mode: host
     ports:
       - "80:8080"
 
