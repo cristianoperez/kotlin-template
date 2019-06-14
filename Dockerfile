@@ -1,4 +1,4 @@
-FROM gradle:jdk10-slim as builder
+FROM gradle:5.4 as builder
 
 USER root
 
