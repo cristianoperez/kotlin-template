@@ -6,7 +6,7 @@ ENV APP_DIR /app
 WORKDIR $APP_DIR
 
 COPY build.gradle.kts $APP_DIR/
-COPy settings.gradle.kts $APP_DIR/
+COPY settings.gradle.kts $APP_DIR/
 
 RUN gradle dependencies
 
