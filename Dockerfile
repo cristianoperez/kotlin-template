@@ -15,6 +15,7 @@ COPY ./build.gradle.kts ./settings.gradle.kts $APP_DIR/
 
 RUN gradle dependencies
 
+RUN apt-get update; apt-get install -y curl
 RUN curl -O "http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
     unzip newrelic-java.zip
 
@@ -23,7 +24,7 @@ COPY . $APP_DIR
 
 # Build project
 RUN gradle build -x test
-RUN cp $APP_DIR/build/libs/kotlin-spring-sample-1.0-SNAPSHOT.jar $APP_DIR/kotlin-spring-sample-1.0-SNAPSHOT.jar
+RUN cp $APP_DIR/build/libs/kotlin-spring-sample-0.0.1-SNAPSHOT.jar $APP_DIR/kotlin-spring-sample-0.0.1-SNAPSHOT.jar
 
 # -----------------------------------------------------------------------------
 # Layer: production
@@ -39,7 +40,7 @@ ENTRYPOINT ["/tini", "--"]
 WORKDIR /app
 
 COPY --from=builder /app/init.sh /app
-COPY --from=builder /app/kotlin-spring-sample-1.0-SNAPSHOT.jar /app/kotlin-spring-sample-1.0-SNAPSHOT.jar
+COPY --from=builder /app/kotlin-spring-sample-0.0.1-SNAPSHOT.jar /app/kotlin-spring-sample-0.0.1-SNAPSHOT.jar
 COPY --from=builder /app/newrelic/newrelic.jar /app/
 COPY --from=builder /app/newrelic/newrelic.yml /app/
 
