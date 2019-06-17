@@ -21,11 +21,11 @@ RUN gradle build -x test
 
 # -----------------------------------------------------------------------------	
 
-FROM openjdk:12.0.1
+FROM openjdk:12-alpine3.9
 
 WORKDIR /app
 
-COPY init.sh /app
+COPY --from=builder /app/init.sh /app
 COPY --from=builder /app/build/libs/kotlin-spring-sample-*.jar /app/
 COPY --from=builder /app/newrelic/newrelic.jar /app/
 COPY --from=builder /app/newrelic/newrelic.yml /app/
