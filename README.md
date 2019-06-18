@@ -4,7 +4,7 @@ Projeto de exemplo de api simples utilizando Spring em Kotlin. Esse projeto pode
 
 ## Bootstrap
 
-1. Criar seu repositório utilizando o botão `use this template` (acima)
+1. Criar seu repositório utilizando o botão [use this template](https://github.com/Creditas/kotlin-spring-sample/generate) (acima)
 2. Baixar o projeto na sua máquina local e rodar o script de rename:
 
 ```sh
