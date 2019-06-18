@@ -4,14 +4,15 @@ Projeto de exemplo de api simples utilizando Spring em Kotlin. Esse projeto pode
 
 ## Bootstrap
 
-Após forkar e baixar o projeto em sua máqiuna local, rodar os seguintes comandos:
+1. Criar seu repositório utilizando o botão `use this template` (acima)
+2. Baixar o projeto na sua máquina local e rodar o script de rename:
 
 ```sh
 sudo chmod +x rename-project.sh
 ./rename-project.sh novo-nome
 ```
 
-Onde `novo-nome` é o nome de destino do projeto, exemplo: `risk-analysis`.
+Onde `novo-nome` é o nome de destino do projeto, exemplo: `risk-analysis`. Esse script irá alterar os namespaces, arquivos Docker, Gradle, CircleCI, database, etc.
 
 ## Começo rápido
 
