@@ -23,6 +23,8 @@ RUN gradle build -x test
 
 FROM openjdk:12-alpine3.9
 
+RUN apk add --no-cache bash
+
 WORKDIR /app
 
 COPY --from=builder /app/init.sh /app
