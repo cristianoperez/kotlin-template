@@ -14,6 +14,8 @@ sudo chmod +x rename-project.sh
 
 Onde `novo-nome` é o nome de destino do projeto, exemplo: `risk-analysis`. Esse script irá alterar os namespaces, arquivos Docker, Gradle, CircleCI, database, etc.
 
+3. Para configurar a infra da aplicação você deve criar uma pasta `/terraform` e ajustar os arquivos seguindo o padrão [Standrd Application do projeto Terraform Template](https://github.com/Creditas/terraform-template/tree/master/standard_application). Um exemplo de configuração que atende exatamente aos requisitos desse projeto pode ser visto [nesse PR](https://github.com/Creditas/kotlin-spring-sample/pull/41/files). *A ideia inicial era deixar esses arquivos de exemplo aqui no próprio sample, mas isso nos faria ter que manter os samples de infra em dois lugares, por isso optamos por deixar apenas no repositório do terraform template e fizemos esse PR aí excluíndo o exemplo daqui.*
+
 ## Começo rápido
 
 * URL Local: http://localhost:8080
