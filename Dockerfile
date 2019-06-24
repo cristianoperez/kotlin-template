@@ -23,7 +23,7 @@ RUN gradle build -x test
 
 FROM openjdk:12-alpine3.9
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash tini
 
 WORKDIR /app
 
@@ -34,4 +34,4 @@ COPY --from=builder /app/newrelic/newrelic.yml /app/
 
 EXPOSE 8080
 
-ENTRYPOINT [ "./init.sh" ]
+ENTRYPOINT ["tini", "-s", "--", "sh", "init.sh"]
