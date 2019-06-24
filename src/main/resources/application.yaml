@@ -17,6 +17,9 @@ management:
 spring:
   datasource:
     url: "jdbc:postgresql://localhost:5432/kotlin_spring_sample?user=postgres"
+  flyway:
+    # Turn off flyway migrattions
+    enabled: false
   jpa:
     properties:
       hibernate:
