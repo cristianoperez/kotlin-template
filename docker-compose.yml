@@ -9,6 +9,8 @@ services:
     ports:
       - "80:8080"
     init: true
+    environment:
+      - "DATABASE_URL=jdbc:postgresql://localhost:5432/kotlin_spring_sample?user=postgres"
 
 networks:
   bankfacil:

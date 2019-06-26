@@ -1,0 +1,7 @@
+spring:
+  main:
+    # Turn off web application, we  only want to migrate
+    web-application-type: NONE
+  flyway:
+    # Turn on flyway migrattions
+    enabled: true

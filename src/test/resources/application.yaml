@@ -18,6 +18,9 @@ spring:
     url: "jdbc:postgresql://localhost:5432/kotlin_spring_sample_test"
     username: postgres
     password: root
+  flyway:
+    # Turn turn on flyway migrattions
+    enabled: true
   jpa:
     properties:
       hibernate:
