@@ -23,7 +23,7 @@ RUN gradle build -x test
 
 FROM openjdk:12-alpine3.9
 
-RUN apk add --no-cache bash tini
+RUN apk add --no-cache tini
 
 WORKDIR /app
 
