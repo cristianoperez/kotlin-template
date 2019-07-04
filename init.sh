@@ -13,7 +13,7 @@ echo $COMMAND
 case "$COMMAND" in
   migrate|web)
     exec java ${JVM_OPS} -Djava.security.egd=file:/dev/./urandom \
-      -javaagent:/app/newrelic.jar \
+      -javaagent:/app/newrelic.jar \ # NOTE: NewRelic won't work unless -javaagent is the first argument
       -Duser.Timezone=America/Sao_Paulo \
       -Dnewrelic.config.license_key=${NEWRELIC_LICENSE_KEY} \
       -Dnewrelic.config.app_name=${NEWRELIC_APP_NAME} \
