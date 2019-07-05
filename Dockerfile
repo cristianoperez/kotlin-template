@@ -22,8 +22,11 @@ USER guest
 
 # -----------------------------------------------------------------------------	
 
+<<<<<<< HEAD
 FROM openjdk:13-slim-buster
 
+=======
+>>>>>>> 025917c... Update Dockerfile
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -37,4 +40,4 @@ COPY --from=builder /app/newrelic/newrelic.yml /app/
 
 EXPOSE 8080
 
-ENTRYPOINT ["tini", "-s", "--", "sh", "init.sh"]
+ENTRYPOINT ["sh", "init.sh"]
