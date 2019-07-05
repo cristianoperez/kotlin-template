@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping
 class SampleController(private val sampleRepository: SampleRepository) {
 
     @PostMapping
-    fun add(@RequestBody se: SampleEntity): SampleEntity {
-        return sampleRepository.save(se)
-    }
+    fun add(@RequestBody se: SampleEntity) = sampleRepository.save(se)
 
     @GetMapping
-    fun list(): List<SampleEntity> {
-        return sampleRepository.findAll().toList()
-    }
+    fun list() = sampleRepository.findAll().toList()
 }
