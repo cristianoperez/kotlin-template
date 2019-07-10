@@ -19,6 +19,7 @@ repositories {
 }
 
 val swaggerVersion = "2.9.2"
+val detektVersion = "1.0.0.RC8"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -38,6 +39,7 @@ dependencies {
     testImplementation("org.amshove.kluent:kluent:1.40")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.mockk:mockk:1.9.3")
+    detekt("io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion")
 }
 
 release {
@@ -58,7 +60,7 @@ tasks.withType<KotlinCompile> {
 }
 
 detekt {
-    version = "1.0.0.RC8"
+    version = detektVersion
     defaultProfile {
         input = "./"
         config = "./detekt-config.yml"

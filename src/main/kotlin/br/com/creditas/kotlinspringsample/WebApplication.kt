@@ -11,5 +11,5 @@ fun main(args: Array<String>) {
         if (args.isNotEmpty() && args[0] == "migrate") {
             this.setAdditionalProfiles("dbmigration")
         }
-  }
+    }
 }

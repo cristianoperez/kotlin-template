@@ -1,7 +1,6 @@
 package br.com.creditas.kotlinspringsample.models
 
-import java.util.*
-import javax.persistence.Column
+import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.Id
 import javax.persistence.Table
