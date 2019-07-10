@@ -48,9 +48,9 @@ Após a inicialização do banco, é necessário criar a base de dados da aplica
 
     $ docker exec -it postgres psql -U postgres -c "create database kotlin_spring_sample"
 
-Para criar as migrações
+Para criar as migrações(Quando novas migrations forem adicionadas, é necessario executar o build do docker novamente)
 
-    $ docker-compose run web migrate
+    $ docker-compose run kotlin-spring-sample migrate
 
 Então, você pode executar, de dentro da raiz do projeto:
 
