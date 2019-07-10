@@ -388,7 +388,7 @@ style:
   EqualsNullCall:
     active: false
   ExpressionBodySyntax:
-    active: false
+    active: true
     includeLineWrapping: false
   ForbiddenComment:
     active: true
