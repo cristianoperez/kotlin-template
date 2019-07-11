@@ -1,9 +1,11 @@
 package br.com.creditas.kotlinspringsample
 
 import br.com.creditas.kotlinspringsample.models.SampleEntity
+import br.com.creditas.kotlinspringsample.models.TypeEnum
 import br.com.creditas.kotlinspringsample.repositories.SampleRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import java.time.LocalDateTime
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.amshove.kluent.shouldBe
@@ -34,7 +36,14 @@ class SampleControllerTests {
 
     @Test
     fun `When receiving a Sample entity by parameter, should pass it to the repository`() {
-        val entity = SampleEntity(title = "Title", description = "Description")
+        val entity = SampleEntity(
+            title = "Title",
+            description = "Description",
+            fullName = "Full Name",
+            birthDate = LocalDateTime.now(),
+            entityType = TypeEnum.SIMPLE
+        )
+
         val params = mapper.writeValueAsString(entity)
 
         mockMvc.perform(
