@@ -11,4 +11,21 @@
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>
+
+    <springProfile name="staging | production">
+        <appender name="LE"
+                  class="com.logentries.logback.LogentriesAppender">
+            <Debug>False</Debug>
+            <Token>${LOGENTRIES_TOKEN}</Token>
+            <Ssl>True</Ssl>
+            <facility>USER</facility>
+            <layout>
+                <pattern>{"log_level": "%-5level", "request_id": "%X{request-id}", "content": %msg}%n</pattern>
+            </layout>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="LE" />
+        </root>
+    </springProfile>
 </configuration>
