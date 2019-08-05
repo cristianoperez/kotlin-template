@@ -98,3 +98,7 @@ Por se tratar de um projeto simples, deixamos todas as dependências diretamente
 Esse projeto foi feito pra funcionar de acordo com nosso módulo [Terraform Standard Application](https://github.com/Creditas/terraform-applications).
 
 Siga as instruções no repositório do link acima pra conseguir subir um ambiente pra aplicação
+
+## Logs (LogEntries)
+
+O projeto já está pré-configurado para utilização da ferramenta LogEntries, porém, para que sua aplicação consiga efetivar a integração com a ferramenta são necessárias algumas configurações específicas por aplicação, para isso basta seguir o passo-a-passo descrito [aqui](https://creditas.atlassian.net/wiki/spaces/PROC/pages/145358928/Configura+o+LogEntries+e+obten+o+de+Token).
