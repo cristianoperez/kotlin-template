@@ -16,7 +16,7 @@ case "$COMMAND" in
     exec java ${JVM_OPS} -Djava.security.egd=file:/dev/./urandom \
       -javaagent:/app/newrelic.jar \
       -Duser.Timezone=America/Sao_Paulo \
-      -Dnewrelic.config.license_key=${NEWRELIC_LICENSE_KEY} \
+      -Dnewrelic.config.license_key=${NEWRELIC_TOKEN} \
       -Dnewrelic.config.app_name=${NEWRELIC_APP_NAME} \
       -Dnewrelic.config.distributed_tracing.enabled=true \
       -Dspring.profiles.active=${ENVIRONMENT_NAME} \
