@@ -47,22 +47,6 @@ jobs:
       - store_artifacts:
           path: ~/junit
 
-release:
-  docker:
-    - image: circleci/openjdk:11-jdk
-      environment:
-        EMAIL: dev@creditas.com.br
-        GIT_AUTHOR_NAME: developer
-        GIT_COMMITTER_NAME: developer
-
-  working_directory: ~/kotlin-spring-sample
-
-  steps:
-    - checkout
-    - run:
-        name: Release
-        command: gradle release -Prelease.useAutomaticVersion=true -x test
-
 build_push_deploy_stg:
   docker:
     - image: 794670448117.dkr.ecr.us-east-1.amazonaws.com/ecs-deploy:1.0.0
@@ -72,31 +56,30 @@ build_push_deploy_stg:
         CLUSTER: kotlin-spring-sample
         SERVICE: kotlin-spring-sample
         TASK: kotlin-spring-sample
+        TASK_MIGRATION: kotlin-spring-sample-migration
   steps:
     - checkout
     - setup_remote_docker
 
     - run:
-        name: set TAG variable
+        name: Login on ECR
         command: |
-          echo 'export TAG=$(git describe --abbrev=0 --tags)' | tee $BASH_ENV
-
+          aws ecr get-login --no-include-email | sh
+          echo "export IMAGE_NAME=\"${REPOSITORY}:$(git rev-parse --short $CIRCLE_SHA1)\"" | tee "${BASH_ENV}"
+          echo "export IMAGE_NAME_LATEST=\"${REPOSITORY}:latest\"" | tee -a "${BASH_ENV}"
     - run:
-        name: Build image
-        command: docker build -t ${REPOSITORY}:$TAG .
-
-    - run:
-        name: Docker tag
-        command: docker tag ${REPOSITORY} ${REPOSITORY}:$TAG
-
-    - run:
-        name: Login to ECR
+        name: build image
         command: |
-          $(aws ecr get-login --no-include-email --region us-east-1)
+          docker build -t $IMAGE_NAME -t $IMAGE_NAME_LATEST .
     - run:
-        name: Push image to ECR
-        command: docker push ${REPOSITORY}
-
+        name: push to ECR
+        command: |
+          docker push $REPOSITORY
+    - run:
+        name: Migrations
+        command: |
+          pip install ecs-task-run
+          ecs-task-run --cluster $CLUSTER --task $TASK_MIGRATION --image $IMAGE_NAME
     - run:
         name: deploy
         command: |
@@ -111,31 +94,31 @@ build_push_deploy_prod:
         CLUSTER: kotlin-spring-sample
         SERVICE: kotlin-spring-sample
         TASK: kotlin-spring-sample
+        TASK_MIGRATION: kotlin-spring-sample-migration
   steps:
     - checkout
     - setup_remote_docker
 
     - run:
-        name: set TAG variable
+        name: Login on ECR
         command: |
-          echo 'export TAG=$(git describe --abbrev=0 --tags)' | tee $BASH_ENV
-
+          aws ecr get-login --no-include-email | sh
+          echo "export IMAGE_NAME=\"${REPOSITORY}:$(git rev-parse --short $CIRCLE_SHA1)\"" | tee "${BASH_ENV}"
+          echo "export IMAGE_NAME_LATEST=\"${REPOSITORY}:latest\"" | tee -a "${BASH_ENV}"
     - run:
-        name: Build image
-        command: docker pull ${REPOSITORY}:$TAG .
-
-    - run:
-        name: Docker tag
-        command: docker tag ${REPOSITORY} ${REPOSITORY}:latest
-
-    - run:
-        name: Login to ECR
+        name: build image
         command: |
-          $(aws ecr get-login --no-include-email --region us-east-1)
+          docker build \
+          -t $IMAGE_NAME -t $IMAGE_NAME_LATEST --cache-from ${REPOSITORY}:latest .
     - run:
-        name: Push image to ECR
-        command: docker push ${REPOSITORY}
-
+        name: push to ECR
+        command: |
+          docker push $REPOSITORY
+    - run:
+        name: Migrations
+        command: |
+          pip install ecs-task-run
+          ecs-task-run --cluster $CLUSTER --task $TASK_MIGRATION --image $IMAGE_NAME
     - run:
         name: deploy
         command: |
@@ -146,25 +129,19 @@ workflows:
   run_pipeline:
     jobs:
       - test_app
-      - release:
+      - build_push_deploy_stg:
           requires:
             - test_app
           filters:
             branches:
               only:
                 - staging
-      - build_push_deploy_stg:
+          context: deploy-stg
+      - build_push_deploy_prod:
           requires:
-            - release
+            - test_app
           filters:
             branches:
               only:
-                - staging
-      - build_push_deploy_prod:
-                requires:
-                  - build_push_deploy_stg
-                filters:
-                  branches:
-                    only:
-                      - master
-
+                - master
+          context: deploy-prod
