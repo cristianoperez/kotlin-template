@@ -12,7 +12,7 @@
         <appender-ref ref="STDOUT" />
     </root>
 
-    <springProfile name="staging | prod">
+    <springProfile name="staging | prod | production">
         <appender name="LE"
                   class="com.logentries.logback.LogentriesAppender">
             <Debug>False</Debug>
