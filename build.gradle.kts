@@ -7,7 +7,7 @@ plugins {
     id("org.springframework.boot") version "2.1.5.RELEASE"
     id("io.spring.dependency-management") version "1.0.7.RELEASE"
     id("net.researchgate.release") version "2.6.0"
-    id("io.gitlab.arturbosch.detekt") version "1.0.0.RC8"
+    id("io.gitlab.arturbosch.detekt") version "1.0.1"
 }
 
 group = "br.com.creditas"
@@ -19,7 +19,7 @@ repositories {
 }
 
 val swaggerVersion = "2.9.2"
-val detektVersion = "1.0.0.RC8"
+val detektVersion = "1.0.1"
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
@@ -40,6 +40,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.mockk:mockk:1.9.3")
     detekt("io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion")
+    detekt("io.gitlab.arturbosch.detekt:detekt-cli:$detektVersion")
 }
 
 release {
@@ -60,9 +61,7 @@ tasks.withType<KotlinCompile> {
 }
 
 detekt {
-    version = detektVersion
-    defaultProfile {
-        input = "./"
-        config = "./detekt-config.yml"
-    }
+    toolVersion = detektVersion
+    input = files("./")
+    config = files("./detekt-config.yml")
 }

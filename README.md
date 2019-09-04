@@ -26,7 +26,7 @@ Alguns *targets* interessantes do Gradle (sistema de build):
 
 * `./gradlew dependencies`: Baixa as dependências
 * `./gradlew build`: Faz a build do projeto inteiro (baixa as dependências também)
-* `./gradlew detektCheck`: Linter que corrige (erros simples) e reporta problemas de formatação 
+* `./gradlew detekt`: Linter que corrige (erros simples) e reporta problemas de formatação 
 
 ### Usando Docker
 
@@ -66,7 +66,9 @@ Para verificar se a aplicação subiu com sucesso, basta chamar o health check:
 
 Dessa forma, antes de realizar um commit é possível verificar qualquer tipo de problema que sua mudança tenha causado
 
-`$ ./gradlew clean && ./gradlew build && ./gradlew test && ./gradlew detektCheck`
+`$ ./gradlew clean && ./gradlew build && ./gradlew test && ./gradlew detekt`
+
+Para uso do linter (Detekt) diretamente no IntelliJ IDEA, é necessário instalar o [plugin do detekt para IDEA](https://plugins.jetbrains.com/plugin/10761-detekt).
 
 ## Arquitetura
 
