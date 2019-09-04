@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Run lint
           command: |
-            gradle detektCheck
+            gradle detekt
 
       - run:
           name: Save test results

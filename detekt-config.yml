@@ -1,32 +1,13 @@
 autoCorrect: true
 failFast: false
 
-test-pattern: # Configure exclusions for test sources
-  active: true
-  patterns: # Test file regexes
-    - '.*/test/.*'
-    - '.*Test.kt'
-    - '.*Spec.kt'
-  exclude-rule-sets:
-    - 'comments'
-  exclude-rules:
-    - 'NamingRules'
-    - 'WildcardImport'
-    - 'MagicNumber'
-    - 'MaxLineLength'
-    - 'LateinitUsage'
-    - 'StringLiteralDuplication'
-    - 'SpreadOperator'
-    - 'TooManyFunctions'
-    - 'ForEachOnRange'
-
 build:
   maxIssues: 0
   weights:
-    # complexity: 2
-    # LongParameterList: 1
-    # style: 1
-    # comments: 1
+  # complexity: 2
+  # LongParameterList: 1
+  # style: 1
+  # comments: 1
 
 processors:
   active: true
@@ -92,6 +73,7 @@ complexity:
   LongMethod:
     active: true
     threshold: 20
+    excludes: "**/test/**"
   LongParameterList:
     active: true
     threshold: 6
@@ -108,6 +90,7 @@ complexity:
     ignoreAnnotation: true
     excludeStringsWithLessThan5Characters: true
     ignoreStringsRegex: '$^'
+    excludes: "**/test/**"
   TooManyFunctions:
     active: true
     thresholdInFiles: 11
@@ -117,6 +100,7 @@ complexity:
     thresholdInEnums: 11
     ignoreDeprecated: false
     ignorePrivate: false
+    excludes: "**/test/**"
 
 empty-blocks:
   active: true
@@ -180,21 +164,20 @@ exceptions:
   TooGenericExceptionCaught:
     active: true
     exceptionNames:
-     - ArrayIndexOutOfBoundsException
-     - Error
-     - Exception
-     - IllegalMonitorStateException
-     - NullPointerException
-     - IndexOutOfBoundsException
-     - RuntimeException
-     - Throwable
+      - ArrayIndexOutOfBoundsException
+      - Error
+      - Exception
+      - IllegalMonitorStateException
+      - NullPointerException
+      - IndexOutOfBoundsException
+      - Throwable
   TooGenericExceptionThrown:
     active: true
     exceptionNames:
-     - Error
-     - Exception
-     - Throwable
-     - RuntimeException
+      - Error
+      - Exception
+      - Throwable
+      - RuntimeException
 
 formatting:
   active: true
@@ -340,8 +323,10 @@ performance:
   active: true
   ForEachOnRange:
     active: true
+    excludes: "**/test/**"
   SpreadOperator:
     active: true
+    excludes: "**/test/**"
   UnnecessaryTemporaryInstantiation:
     active: true
 
@@ -413,6 +398,7 @@ style:
     ignoreAnnotation: false
     ignoreNamedArgument: true
     ignoreEnums: false
+    excludes: "**/test/**"
   MandatoryBracesIfStatements:
     active: false
   MaxLineLength:
