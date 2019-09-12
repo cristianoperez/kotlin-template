@@ -44,7 +44,6 @@ internal class WebConfiguration : ApplicationContextInitializer<GenericApplicati
 
     private fun jackson2ObjectMapperBuilder(): Jackson2ObjectMapperBuilder {
         return Jackson2ObjectMapperBuilder()
-            .propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
             .featuresToEnable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
             .dateFormat(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"))
     }
