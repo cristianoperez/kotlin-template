@@ -5,7 +5,6 @@ import br.com.creditas.kotlinspringsample.models.TypeEnum
 import br.com.creditas.kotlinspringsample.repositories.SampleRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import java.time.LocalDateTime
 import org.amshove.kluent.`should be`
 import org.amshove.kluent.`should equal`
 import org.amshove.kluent.shouldBe
@@ -20,6 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+import java.time.LocalDateTime
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
