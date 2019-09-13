@@ -2,10 +2,10 @@ package br.com.creditas.kotlinspringsample.models
 
 import javax.persistence.Column
 import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
 @Table(name = "sample_entity3")

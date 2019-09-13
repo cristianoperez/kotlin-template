@@ -2,6 +2,8 @@ package br.com.creditas.kotlinspringsample.configuration
 
 import com.fasterxml.jackson.databind.MapperFeature
 import com.google.common.base.Predicates
+import java.text.SimpleDateFormat
+import javax.servlet.Filter
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.annotation.Configuration
@@ -13,8 +15,6 @@ import springfox.documentation.builders.PathSelectors
 import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
-import java.text.SimpleDateFormat
-import javax.servlet.Filter
 
 @Configuration
 @EnableSwagger2
