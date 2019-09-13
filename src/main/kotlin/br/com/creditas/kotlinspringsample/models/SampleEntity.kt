@@ -1,8 +1,12 @@
 package br.com.creditas.kotlinspringsample.models
 
 import java.time.LocalDateTime
-import java.util.*
-import javax.persistence.*
+import java.util.UUID
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.Table
+import javax.persistence.Id
 
 @Entity
 @Table(name = "sample_entity")

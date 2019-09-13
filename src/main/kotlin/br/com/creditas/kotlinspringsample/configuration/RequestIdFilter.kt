@@ -3,7 +3,7 @@ package br.com.creditas.kotlinspringsample.configuration
 import org.slf4j.MDC
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.GenericFilterBean
-import java.util.*
+import java.util.UUID
 import javax.servlet.FilterChain
 import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
