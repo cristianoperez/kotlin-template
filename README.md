@@ -33,22 +33,12 @@ Alguns *targets* interessantes do Gradle (sistema de build):
 Supondo que você tenha instalado:
 
 * [Docker][]
-* [Docker Dev][]
 * [Docker Compose][]
 
 [Docker]: https://docs.docker.com/install/ "About Docker CE"
-[Docker Dev]: https://github.com/Creditas/docker-dev "A CLI for simplify the creation of development environment."
 [Docker Compose]: https://docs.docker.com/compose/install/#install-compose "Install Docker Compose"
 
-Primeiro, suba o postgres via [docker-dev](https://github.com/creditas/docker-dev):
-
-    $ docker-compose up -d
-
-Após a inicialização do banco, é necessário criar a base de dados da aplicação:
-
-    $ docker exec -it postgres psql -U postgres -c "create database kotlin_spring_sample"
-
-Para criar as migrações(Quando novas migrations forem adicionadas, é necessario executar o build do docker novamente)
+Para rodar as migrações (Quando novas migrations forem adicionadas, é necessario executar o build do docker novamente)
 
     $ docker-compose run kotlin-spring-sample migrate
 
