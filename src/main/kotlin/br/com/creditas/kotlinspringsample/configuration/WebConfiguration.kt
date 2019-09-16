@@ -1,7 +1,6 @@
 package br.com.creditas.kotlinspringsample.configuration
 
 import com.fasterxml.jackson.databind.MapperFeature
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.google.common.base.Predicates
 import java.text.SimpleDateFormat
 import javax.servlet.Filter
@@ -44,7 +43,6 @@ internal class WebConfiguration : ApplicationContextInitializer<GenericApplicati
 
     private fun jackson2ObjectMapperBuilder(): Jackson2ObjectMapperBuilder {
         return Jackson2ObjectMapperBuilder()
-            .propertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE)
             .featuresToEnable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
             .dateFormat(SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"))
     }
