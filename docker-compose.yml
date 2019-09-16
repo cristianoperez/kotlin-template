@@ -1,16 +1,27 @@
 version: '3.7'
 
 services:
+  db:
+    image: postgres
+    restart: always
+    hostname: kotlin-spring-sample
+    ports:
+      - "5432:5432"
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_DB=kotlin_spring_sample"
+
   kotlin-spring-sample:
     build: .
     image: creditas/kotlin-spring-sample
     hostname: kotlin-spring-sample
-    network_mode: host
     ports:
       - "80:8080"
     init: true
+    depends_on:
+      - db
     environment:
-      - "DATABASE_URL=jdbc:postgresql://localhost:5432/kotlin_spring_sample?user=postgres"
+      - "DATABASE_URL=jdbc:postgresql://db:5432/kotlin_spring_sample?user=postgres"
 
 networks:
   bankfacil:
