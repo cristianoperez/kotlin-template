@@ -8,8 +8,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - "POSTGRES_USER=postgres"
-      - "POSTGRES_DB=kotlin_spring_sample"
+      POSTGRES_USER: postgres
+      POSTGRES_DB: kotlin_spring_sample
 
   kotlin-spring-sample:
     build: .
