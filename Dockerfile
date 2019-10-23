@@ -21,9 +21,7 @@ RUN gradle build -x test
 
 # -----------------------------------------------------------------------------	
 
-FROM openjdk:12-alpine3.9
-
-RUN apk add --no-cache tini
+FROM openjdk:13-slim-buster
 
 WORKDIR /app
 
