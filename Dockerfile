@@ -10,9 +10,8 @@ COPY settings.gradle.kts $APP_DIR/
 
 RUN gradle dependencies
 
-RUN apk add --no-cache curl
-
-RUN curl -O "http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
+RUN apk add --no-cache curl && \
+    curl -O "http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
     unzip newrelic-java.zip
 
 COPY . $APP_DIR
