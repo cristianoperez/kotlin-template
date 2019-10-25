@@ -18,6 +18,8 @@ COPY . $APP_DIR
 
 RUN gradle build -x test
 
+USER guest
+
 # -----------------------------------------------------------------------------	
 
 FROM openjdk:13-slim-buster
