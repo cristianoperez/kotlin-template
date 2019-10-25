@@ -3,13 +3,15 @@ version: '3.7'
 services:
   db:
     image: postgres
+    volumes:
+      - ./docker/postgres-multiple-databases.sh:/docker-entrypoint-initdb.d/postgres-multiple-databases.sh
     restart: always
     hostname: kotlin-spring-sample
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: kotlin_spring_sample
+      - POSTGRES_USER=postgres
+      - POSTGRES_MULTIPLE_DATABASES=kotlin_spring_sample,kotlin_spring_sample_test
 
   kotlin-spring-sample:
     build: .
