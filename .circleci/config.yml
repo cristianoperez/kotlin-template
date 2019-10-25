@@ -7,9 +7,9 @@ workflows:
   lint:
     jobs:
       - docker/hadolint:
-      dockerfile: Dockerfile
-          ignore-rules: 'DL4005,DL3008'
-    trusted-registries: 'docker.io,794670448117.dkr.ecr.us-east-1.amazonaws.com'
+       dockerfile: Dockerfile
+       ignore-rules: 'DL4005,DL3008'
+       trusted-registries: 'docker.io,794670448117.dkr.ecr.us-east-1.amazonaws.com'
 
 jobs:
   test_app:
