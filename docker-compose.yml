@@ -18,7 +18,7 @@ services:
     image: creditas/kotlin-spring-sample
     hostname: kotlin-spring-sample
     ports:
-      - "80:8080"
+      - "8080:8080"
     init: true
     depends_on:
       - db

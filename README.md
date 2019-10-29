@@ -48,7 +48,7 @@ Então, você pode executar, de dentro da raiz do projeto:
 
 Para verificar se a aplicação subiu com sucesso, basta chamar o health check:
 
-[http://localhost:80/health](http://localhost:80/health)
+[http://localhost:8080/health](http://localhost:8080/health)
 
 ### Executando testes e lint
 
