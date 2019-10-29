@@ -10,9 +10,8 @@ COPY settings.gradle.kts $APP_DIR/
 
 RUN gradle dependencies
 
-RUN apk add --no-cache curl
-
-RUN curl -O "http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
+RUN apk add --no-cache curl && \
+    curl -O "http://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
     unzip newrelic-java.zip
 
 COPY . $APP_DIR
@@ -21,11 +20,13 @@ RUN gradle build -x test
 
 # -----------------------------------------------------------------------------	
 
-FROM openjdk:12-alpine3.9
-
-RUN apk add --no-cache tini
+FROM openjdk:13-slim-buster
 
 WORKDIR /app
+
+RUN apt update && apt install -y \
+    tini && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /app/init.sh /app
 COPY --from=builder /app/build/libs/kotlin-spring-sample-*.jar /app/
