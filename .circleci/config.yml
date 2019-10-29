@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+   docker: circleci/docker@0.5.13
 
 jobs:
   test_app:
@@ -125,7 +128,12 @@ jobs:
             ecs deploy $CLUSTER $SERVICE -i $TASK $IMAGE_NAME --timeout 500
 
 workflows:
-  version: 2
+  version: 2.1
+  lint:
+    jobs:
+      - docker/hadolint:
+          ignore-rules: 'DL3018,DL3008'
+          trusted-registries: 'docker.io,794670448117.dkr.ecr.us-east-1.amazonaws.com'
   run_pipeline:
     jobs:
       - test_app

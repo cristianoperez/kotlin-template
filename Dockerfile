@@ -18,13 +18,15 @@ COPY . $APP_DIR
 
 RUN gradle build -x test
 
+USER guest
+
 # -----------------------------------------------------------------------------	
 
 FROM openjdk:13-slim-buster
 
 WORKDIR /app
 
-RUN apt update && apt install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     tini && \
     rm -rf /var/lib/apt/lists/*
 
