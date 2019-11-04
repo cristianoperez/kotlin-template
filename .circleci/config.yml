@@ -132,6 +132,7 @@ workflows:
   lint:
     jobs:
       - docker/hadolint:
+          artifacts-path: '/tmp/artifacts'
           ignore-rules: 'DL3018,DL3008'
           trusted-registries: 'docker.io,794670448117.dkr.ecr.us-east-1.amazonaws.com'
   run_pipeline:
