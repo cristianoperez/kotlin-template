@@ -74,7 +74,7 @@ class SampleControllerTests {
             title = "Title",
             description = "Description",
             fullName = "Full Name",
-            birthDate = LocalDateTime.now(),
+            birthDate = LocalDateTime.of(2019, 11, 30, 0, 0),
             entityType = "Simple"
         )
 

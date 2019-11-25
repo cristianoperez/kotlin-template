@@ -35,7 +35,7 @@ services:
       - db
     environment:
       - "DATABASE_URL=jdbc:postgresql://db:5432/kotlin_spring_sample?user=postgres"
-      - "MONGODB_DATABASE_URL=mongodb://mongodb_example:pass@db/mongodb_example?retryWrites=true&w=majority&authSource=admin"
+      - "MONGODB_DATABASE_URL=mongodb://mongodb_example:pass@mongodb/mongodb_example?retryWrites=true&w=majority&authSource=admin"
 
 
 networks:
