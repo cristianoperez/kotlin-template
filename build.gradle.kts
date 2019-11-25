@@ -22,20 +22,28 @@ val swaggerVersion = "2.9.2"
 val detektVersion = "1.0.1"
 
 dependencies {
+//  Basic dependencies:
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("javax.activation:activation:1.1.1")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//  Web dependencies:
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.springfox:springfox-swagger2:$swaggerVersion")
     implementation("io.springfox:springfox-swagger-ui:$swaggerVersion")
+//  PostgreSQL dependencies:
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("org.postgresql:postgresql")
     implementation("org.flywaydb:flyway-core")
+//  MongoDB dependencies:
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+//  Log dependencies
     implementation("org.zalando:logbook-spring-boot-starter:1.13.0")
     implementation("com.logentries:logentries-appender:1.1.38")
-    runtimeOnly("org.postgresql:postgresql")
+//  Test and lint dependencies
     testImplementation("org.amshove.kluent:kluent:1.40")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.mockk:mockk:1.9.3")

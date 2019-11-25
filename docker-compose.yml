@@ -13,6 +13,17 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_MULTIPLE_DATABASES=kotlin_spring_sample,kotlin_spring_sample_test
 
+  mongodb:
+    image: mongo:4.2
+    restart: always
+    ports:
+      - "27017:27017"
+    init: true
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongodb_example
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=admin # this is just the authentication db
+
   kotlin-spring-sample:
     build: .
     image: creditas/kotlin-spring-sample
@@ -24,6 +35,8 @@ services:
       - db
     environment:
       - "DATABASE_URL=jdbc:postgresql://db:5432/kotlin_spring_sample?user=postgres"
+      - "MONGODB_DATABASE_URL=mongodb://mongodb_example:pass@db/mongodb_example?retryWrites=true&w=majority&authSource=admin"
+
 
 networks:
   bankfacil:

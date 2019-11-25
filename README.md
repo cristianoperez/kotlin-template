@@ -60,14 +60,18 @@ Dessa forma, antes de realizar um commit é possível verificar qualquer tipo de
 
 Para uso do linter (Detekt) diretamente no IntelliJ IDEA, é necessário instalar o [plugin do detekt para IDEA](https://plugins.jetbrains.com/plugin/10761-detekt).
 
+:warning: Para rodar os testes é necessario que o serviço `db` (postgres) esteja rodando na maquina.
+
 ## Arquitetura
 
 ### As biblitecas usadas são:
 
 * **Gradle**: Ferramenta de build e gerenciador de dependências ("Rake" + "Bundler")
 * **Spring**: Framework Web ("Rails")
-* **Spring Data**: Framework de persistência ("Sequel")
-* **Flyway**: Gerenciador de migrations (criadas em SQL puro)
+* **Spring Data/JPA**: Framework de persistência para Postgres ("Sequel")
+* **Flyway**: Gerenciador de migrations para Postgres (criadas em SQL puro)
+* **Spring Data/Mongo**: Framework de persistência para Mongo
+* **Embed Mongo**: Ferramenta para simular um Mongo no stack de testes.
 * **Kluent**: Fluent assertions
 * **Mockito Kotlin**: wrapper do mockito com sintaxe kotlin-friendly
 * **Jackson**: Serializador/deserializador JSON
