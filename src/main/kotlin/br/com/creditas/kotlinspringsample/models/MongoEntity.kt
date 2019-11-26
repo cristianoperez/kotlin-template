@@ -19,5 +19,4 @@ data class SampleNestedEntity (
     val name: String? = null,
     val type: String? = null,
     val value: String? = null
-
 )
