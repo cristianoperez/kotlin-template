@@ -1,7 +1,9 @@
 package br.com.creditas.kotlinspringsample
 
+import br.com.creditas.kotlinspringsample.models.MongoEntity
 import br.com.creditas.kotlinspringsample.models.SampleEntity
 import br.com.creditas.kotlinspringsample.models.TypeEnum
+import br.com.creditas.kotlinspringsample.repositories.MongodbRepository
 import br.com.creditas.kotlinspringsample.repositories.SampleRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
@@ -34,6 +36,9 @@ class SampleControllerTests {
     @Autowired
     private lateinit var sampleRepository: SampleRepository
 
+    @Autowired
+    private lateinit var mongoRepository: MongodbRepository
+
     @Test
     fun `When receiving a Sample entity by parameter, should pass it to the repository`() {
         val entity = SampleEntity(
@@ -61,6 +66,35 @@ class SampleControllerTests {
             dbEntity.isPresent shouldBe true
             responseEntity `should equal` dbEntity.get()
         }
+    }
+
+    @Test
+    fun `When receiving a Mongo entity by parameter, should pass it to the mongo repository`() {
+        val entity = MongoEntity(
+            title = "Title",
+            description = "Description",
+            fullName = "Full Name",
+            birthDate = LocalDateTime.of(2019, 11, 30, 0, 0),
+            entityType = "Simple"
+        )
+
+        val params = mapper.writeValueAsString(entity)
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.post("/mongo/sample")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(params))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.id").isNotEmpty)
+            .andExpect(MockMvcResultMatchers.jsonPath("$.title").value("Title"))
+            .andExpect(MockMvcResultMatchers.jsonPath("$.description").value("Description"))
+            .andDo { mvcResult ->
+                val responseEntity = mapper.readValue<MongoEntity>(mvcResult.response.contentAsString)
+                val dbEntity = mongoRepository.findById(responseEntity.id)
+
+                dbEntity.isPresent shouldBe true
+                responseEntity `should equal` dbEntity.get()
+            }
     }
 
     @Test

@@ -30,3 +30,6 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  data:
+    mongodb:
+      uri: ${MONGODB_DATABASE_URL}
