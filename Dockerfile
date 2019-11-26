@@ -22,11 +22,8 @@ USER guest
 
 # -----------------------------------------------------------------------------	
 
-<<<<<<< HEAD
 FROM openjdk:13-slim-buster
 
-=======
->>>>>>> 025917c... Update Dockerfile
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
