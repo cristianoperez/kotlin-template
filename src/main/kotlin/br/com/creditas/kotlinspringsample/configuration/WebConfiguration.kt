@@ -1,13 +1,13 @@
 package br.com.creditas.kotlinspringsample.configuration
 
 import com.google.common.base.Predicates
+import javax.servlet.Filter
 import org.springframework.boot.web.servlet.FilterRegistrationBean
 import org.springframework.context.support.beans
 import org.springframework.core.Ordered
 import springfox.documentation.builders.PathSelectors
 import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
-import javax.servlet.Filter
 
 val beans = beans {
     bean {
