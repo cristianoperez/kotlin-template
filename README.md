@@ -101,4 +101,4 @@ O projeto já está pré-configurado para utilização da ferramenta LogEntries,
 
 ## Exemplos:
 
- - Tutorial e aplicação com MongoDB: https://github.com/Creditas/mongodb-example
+ - Tutorial de aplicação MongoDB com configuração do terraform: https://github.com/Creditas/mongodb-example
