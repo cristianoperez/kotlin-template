@@ -98,3 +98,7 @@ Siga as instruções no repositório do link acima pra conseguir subir um ambien
 ## Logs (LogEntries)
 
 O projeto já está pré-configurado para utilização da ferramenta LogEntries, porém, para que sua aplicação consiga efetivar a integração com a ferramenta são necessárias algumas configurações específicas por aplicação, para isso basta seguir o passo-a-passo descrito [aqui](https://creditas.atlassian.net/wiki/spaces/PROC/pages/145358928/Configura+o+LogEntries+e+obten+o+de+Token).
+
+## Exemplos:
+
+ - Tutorial e aplicação com MongoDB: https://github.com/Creditas/mongodb-example
