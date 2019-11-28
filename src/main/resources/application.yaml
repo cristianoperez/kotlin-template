@@ -28,3 +28,6 @@ spring:
     date-format: yyyy-MM-dd'T'HH:mm:ssZ
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
+  data:
+    mongodb:
+      uri: ${MONGODB_DATABASE_URL}

@@ -56,7 +56,7 @@ jobs:
         environment:
           AWS_DEFAULT_REGION: 'us-east-1'
           REPOSITORY: '794670448117.dkr.ecr.us-east-1.amazonaws.com/kotlin-spring-sample'
-          CLUSTER: kotlin-spring-sample
+          CLUSTER: platform
           SERVICE: kotlin-spring-sample
           TASK: kotlin-spring-sample
           TASK_MIGRATION: kotlin-spring-sample-migration
@@ -94,7 +94,7 @@ jobs:
         environment:
           AWS_DEFAULT_REGION: 'us-east-1'
           REPOSITORY: '489963411341.dkr.ecr.us-east-1.amazonaws.com/kotlin-spring-sample'
-          CLUSTER: kotlin-spring-sample
+          CLUSTER: platform
           SERVICE: kotlin-spring-sample
           TASK: kotlin-spring-sample
           TASK_MIGRATION: kotlin-spring-sample-migration
