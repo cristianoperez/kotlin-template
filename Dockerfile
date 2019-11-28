@@ -26,10 +26,6 @@ FROM openjdk:13-slim-buster
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    tini && \
-    rm -rf /var/lib/apt/lists/*
-
 COPY --from=builder /app/init.sh /app
 COPY --from=builder /app/build/libs/kotlin-spring-sample-*.jar /app/
 COPY --from=builder /app/newrelic/newrelic.jar /app/
@@ -37,4 +33,4 @@ COPY --from=builder /app/newrelic/newrelic.yml /app/
 
 EXPOSE 8080
 
-ENTRYPOINT ["tini", "-s", "--", "sh", "init.sh"]
+ENTRYPOINT ["sh", "init.sh"]

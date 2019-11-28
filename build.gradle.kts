@@ -1,12 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("plugin.jpa") version "1.3.30"
-    kotlin("jvm") version "1.3.30"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.30"
-    id("org.springframework.boot") version "2.1.5.RELEASE"
-    id("io.spring.dependency-management") version "1.0.7.RELEASE"
-    id("net.researchgate.release") version "2.6.0"
+    kotlin("plugin.jpa") version "1.3.50"
+    kotlin("plugin.spring") version "1.3.50"
+    kotlin("jvm") version "1.3.50"
+    id("org.springframework.boot") version "2.2.1.RELEASE"
+    id("io.spring.dependency-management") version "1.0.8.RELEASE"
     id("io.gitlab.arturbosch.detekt") version "1.0.1"
 }
 
@@ -48,12 +47,6 @@ dependencies {
     testImplementation("io.mockk:mockk:1.9.3")
     detekt("io.gitlab.arturbosch.detekt:detekt-formatting:$detektVersion")
     detekt("io.gitlab.arturbosch.detekt:detekt-cli:$detektVersion")
-}
-
-release {
-    preTagCommitMessage = "[Gradle Release Plugin] [skip ci] - pre tag commit:"
-    tagCommitMessage = "[Gradle Release Plugin] [skip ci] - creating tag:"
-    newVersionCommitMessage = "[Gradle Release Plugin] [skip ci] - new version commit:"
 }
 
 tasks.withType<Test> {

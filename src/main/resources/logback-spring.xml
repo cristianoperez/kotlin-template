@@ -2,30 +2,19 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <springProperty scope="context" name="logentriesToken" source="logentries.token"/>
-    <appender name="STDOUT"
-              class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
+    
+    <appender name="LE" class="com.logentries.logback.LogentriesAppender">
+        <Debug>False</Debug>
+        <Token>${LOGENTRIES_TOKEN}</Token>
+        <Ssl>True</Ssl>
+        <facility>USER</facility>
+        <layout>
             <pattern>{"log_level": "%-5level", "request_id": "%X{request-id}", "content": %msg}%n</pattern>
-        </encoder>
+        </layout>
     </appender>
+
     <root level="info">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="LE" />
     </root>
-
-    <springProfile name="staging | prod | production">
-        <appender name="LE"
-                  class="com.logentries.logback.LogentriesAppender">
-            <Debug>False</Debug>
-            <Token>${LOGENTRIES_TOKEN}</Token>
-            <Ssl>True</Ssl>
-            <facility>USER</facility>
-            <layout>
-                <pattern>{"log_level": "%-5level", "request_id": "%X{request-id}", "content": %msg}%n</pattern>
-            </layout>
-        </appender>
-
-        <root level="info">
-            <appender-ref ref="LE" />
-        </root>
-    </springProfile>
 </configuration>
