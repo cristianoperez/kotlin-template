@@ -65,24 +65,19 @@ jobs:
       - setup_remote_docker
 
       - run:
+          name: build image
+          command: |
+          echo "export IMAGE_NAME=\"${REPOSITORY}:$(git rev-parse --short $CIRCLE_SHA1)\"" | tee "${BASH_ENV}"
+          echo "export IMAGE_NAME_LATEST=\"${REPOSITORY}:latest\"" | tee -a "${BASH_ENV}"
+          docker build -t $IMAGE_NAME -t $IMAGE_NAME_LATEST .
+      - run:
           name: Login on ECR
           command: |
             aws ecr get-login --no-include-email | sh
-            echo "export IMAGE_NAME=\"${REPOSITORY}:$(git rev-parse --short $CIRCLE_SHA1)\"" | tee "${BASH_ENV}"
-            echo "export IMAGE_NAME_LATEST=\"${REPOSITORY}:latest\"" | tee -a "${BASH_ENV}"
-      - run:
-          name: build image
-          command: |
-            docker build -t $IMAGE_NAME -t $IMAGE_NAME_LATEST .
       - run:
           name: push to ECR
           command: |
             docker push $REPOSITORY
-      - run:
-          name: Migrations
-          command: |
-            pip install ecs-task-run
-            ecs-task-run --cluster $CLUSTER --task $TASK_MIGRATION --image $IMAGE_NAME
       - run:
           name: deploy
           command: |
@@ -117,11 +112,6 @@ jobs:
           name: push to ECR
           command: |
             docker push $REPOSITORY
-      - run:
-          name: Migrations
-          command: |
-            pip install ecs-task-run
-            ecs-task-run --cluster $CLUSTER --task $TASK_MIGRATION --image $IMAGE_NAME
       - run:
           name: deploy
           command: |
